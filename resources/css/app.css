@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sand: #FBF5EC;
+  --color-sand-100: #F5E9D6;
+  
+  --color-ink: #2A1D14;
+  --color-ink-soft: #7A6A59;
+  
+  --color-saffron-50: #FFF7EC;
+  --color-saffron-100: #FEE9CC;
+  --color-saffron-200: #FBCE94;
+  --color-saffron-300: #F6AD5C;
+  --color-saffron-400: #EE832F;
+  --color-saffron-500: #E2622A;
+  --color-saffron-600: #C7411B;
+  
+  --color-coral: #FA6455;
+  --color-coral-light: #FFF0EE;
+  --color-coral-dark: #D93829;
+  
+  --color-pistachio: #E3F2E6;
+  --color-pistachio-dark: #2E7D32;
+
+  --font-sans: "Vazirmatn", sans-serif;
+  --font-display: "Lalezar", sans-serif;
+  --font-en: "Poppins", sans-serif;
+
+  --shadow-tag: 0 4px 20px -2px rgba(42, 29, 20, 0.06);
+  --shadow-nav: 0 -4px 30px rgba(42, 29, 20, 0.04);
+}
+
+/* استایل‌های اختصاصی پاوِت */
+body { 
+    font-family: var(--font-sans); 
+    background-color: var(--color-sand-100); 
+}
+.no-scrollbar::-webkit-scrollbar { 
+    display: none; 
+}
+.no-scrollbar { 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+.tag-hole {
+    position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
+    width: 12px; h: 12px; background-color: #FBF5EC; border-radius: 50%;
+    box-shadow: inset -3px 0 5px rgba(0,0,0,0.05);
+}
+
