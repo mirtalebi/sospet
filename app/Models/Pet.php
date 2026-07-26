@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class Pet extends Model
 {
@@ -40,5 +41,31 @@ class Pet extends Model
     public function getTypeText() {
         return $this->type == 'adoption' ? 'فرزندخواهی' : 
             ($this->type == 'found' ? 'پیدا شده' : 'گمشده');
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_resolved', false);
+    }
+
+    public function scopeOfType(Builder $query, string $type): Builder
+    {
+        return $query->where('type', $type);
+    }
+
+    public function scopeInCity(Builder $query, string $city): Builder
+    {
+        return $query->where('city', $city);
+    }
+
+    public function scopeWithinRadiusKm(Builder $query, float $latitude, float $longitude, float $radiusKm): Builder
+    {
+        $distanceSql = '(6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude))))';
+
+        return $query
+            ->whereNotNull('latitude')
+            ->whereNotNull('longitude')
+            ->selectRaw("pets.*, {$distanceSql} as distance_km", [$latitude, $longitude, $latitude])
+            ->having('distance_km', '<=', $radiusKm);
     }
 }

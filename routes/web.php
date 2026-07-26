@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::livewire('/', 'home')->name('home');
 Route::livewire('/pet/{id}', 'pet-details')->name('pet-details');
+Route::livewire('/match', 'match-pets')->name('match-pets');
 Route::livewire('/profile', 'user-profile')->middleware('auth');
 Route::livewire('/report', 'report-pet')->middleware('auth');
 

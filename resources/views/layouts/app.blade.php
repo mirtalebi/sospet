@@ -16,36 +16,56 @@
     @livewireStyles
 </head>
 
-<body class="flex justify-center min-h-screen antialiased bg-sand-100 selection:bg-saffron-200">
+<body class="flex justify-center min-h-screen antialiased bg-bg-secondary selection:bg-primary/20">
 
     <div x-data="{ sidebarOpen: false }"
-        class="relative w-full max-w-md bg-sand flex flex-col min-h-screen shadow-2xl overflow-hidden ring-1 ring-ink/5">
+        class="relative w-full max-w-md bg-bg-main flex flex-col min-h-screen shadow-2xl overflow-hidden ring-1 ring-border-custom">
 
+        <!-- Header -->
         <header
-            class="flex items-center justify-between px-5 py-4 bg-gradient-to-b from-turmeric-300/10 to-transparent shrink-0">
-            <button @click="sidebarOpen = true"
-                class="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-ink/5 text-ink">
+            class="flex items-center justify-between px-5 py-2 bg-gradient-to-b from-primary/5 to-transparent shrink-0">
+            {{-- <button @click="sidebarOpen = true"
+                class="w-10 h-10 rounded-full bg-bg-main flex items-center justify-center border border-border-custom text-text-title">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2.5">
                     <line x1="3" y1="12" x2="21" y2="12" />
                     <line x1="3" y1="6" x2="21" y2="6" />
                     <line x1="3" y1="18" x2="21" y2="18" />
                 </svg>
-            </button>
+            </button> --}}
             <div class="flex items-center gap-1.5">
-                <span class="font-display text-2xl text-saffron-500 tracking-wide">Pawet</span>
-                <span class="text-xl">🐾</span>
+                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center"
+                    style="background: rgb(231, 244, 246);"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                        height="16" viewBox="0 0 24 24" fill="none" stroke="#1298AE" stroke-width="2.3"
+                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print md:hidden"
+                        aria-hidden="true">
+                        <circle cx="11" cy="4" r="2"></circle>
+                        <circle cx="18" cy="8" r="2"></circle>
+                        <circle cx="20" cy="16" r="2"></circle>
+                        <path
+                            d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
+                        </path>
+                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="#1298AE" stroke-width="2.3" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-paw-print hidden md:block" aria-hidden="true">
+                        <circle cx="11" cy="4" r="2"></circle>
+                        <circle cx="18" cy="8" r="2"></circle>
+                        <circle cx="20" cy="16" r="2"></circle>
+                        <path
+                            d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
+                        </path>
+                    </svg></div>
+
+                <span class="font-display text-2xl text-text-title tracking-wide">ردپا</span>
             </div>
+
             <button
-                class="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-ink/5 text-ink relative">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2.2">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" />
-                </svg>
-                <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-coral rounded-full ring-2 ring-white"></span>
+                class="px-5 h-10 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm relative">
+                ثبت آگهی
             </button>
         </header>
 
+        <!-- Dynamic Slot Content -->
         {{ $slot }}
 
         @php
@@ -53,12 +73,13 @@
             $isProfile = request()->is('profile');
             $isReport = request()->is('report');
             $navLinkClass = fn($active = false) => $active
-                ? 'flex flex-col items-center gap-1 text-saffron-500 font-bold transition-transform active:scale-95'
-                : 'flex flex-col items-center gap-1 text-ink-soft hover:text-ink font-medium transition-transform active:scale-95';
+                ? 'flex flex-col items-center gap-1 text-primary font-bold transition-transform active:scale-95'
+                : 'flex flex-col items-center gap-1 text-text-muted hover:text-text-title font-medium transition-transform active:scale-95';
         @endphp
 
+        <!-- Navigation Bar -->
         <nav
-            class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-ink/5 px-4 pt-2.5 pb-safe shadow-nav flex justify-around items-center z-40 rounded-t-[1.8rem]">
+            class="fixed bottom-0 inset-x-0 bg-bg-main/95 backdrop-blur-md border-t border-border-custom px-4 pt-2.5 pb-safe shadow-md flex justify-around items-center z-40 rounded-t-[1.8rem]">
             <a href="/" class="{{ $navLinkClass($isHome) }}">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
@@ -74,9 +95,10 @@
                 <span class="text-[10px] font-medium">جستجو</span>
             </a>
 
+            <!-- Floating Action Button -->
             @auth
                 <a href="/report" wire:navigate
-                    class="relative -top-5 w-14 h-14 {{ $isReport ? 'bg-saffron-600' : 'bg-saffron-500' }} text-white rounded-full flex items-center justify-center shadow-lg shadow-saffron-500/30 border-4 border-sand hover:bg-saffron-600 transition-all active:scale-90 z-50">
+                    class="relative -top-5 w-14 h-14 {{ $isReport ? 'bg-primary-hover' : 'bg-primary' }} text-white rounded-full flex items-center justify-center shadow-lg border-4 border-bg-main hover:bg-primary-hover transition-all active:scale-90 z-50">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="3">
                         <line x1="12" y1="5" x2="12" y2="19" />
@@ -85,7 +107,7 @@
                 </a>
             @else
                 <button @click="$dispatch('open-auth')"
-                    class="relative -top-5 w-14 h-14 bg-saffron-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-saffron-500/30 border-4 border-sand hover:bg-saffron-600 transition-all active:scale-90 z-50">
+                    class="relative -top-5 w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-lg border-4 border-bg-main hover:bg-primary-hover transition-all active:scale-90 z-50">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="3">
                         <line x1="12" y1="5" x2="12" y2="19" />
@@ -112,51 +134,60 @@
             </a>
         </nav>
 
+        <!-- Sidebar / Drawer Drawer Overlay and Content -->
         <div x-show="sidebarOpen" class="fixed inset-0 z-50 overflow-hidden" style="display: none;">
             <div @click="sidebarOpen = false" x-show="sidebarOpen"
                 x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300"
                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                class="absolute inset-0 bg-ink/40 backdrop-blur-sm"></div>
-            <div class="absolute inset-y-0 start-0 max-w-xs w-full bg-sand flex flex-col p-6 shadow-xl"
+                class="absolute inset-0 bg-text-title/40 backdrop-blur-sm"></div>
+
+            <div class="absolute inset-y-0 start-0 max-w-xs w-full bg-bg-main flex flex-col p-6 shadow-xl"
                 x-show="sidebarOpen" x-transition:enter="transition ease-in-out duration-300 transform"
                 x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                 x-transition:leave="transition ease-in-out duration-300 transform"
                 x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full">
-                <div class="flex items-center justify-between pb-6 border-b border-ink/5">
-                    <span class="font-display text-xl text-saffron-600">منوی ناوبری</span>
-                    <button @click="sidebarOpen = false" class="text-ink"><svg width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+
+                <div class="flex items-center justify-between pb-6 border-b border-border-custom">
+                    <span class="font-display text-xl text-primary font-bold">منوی ناوبری</span>
+                    <button @click="sidebarOpen = false" class="text-text-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
                             <line x1="18" y1="6" x2="6" y2="18" />
                             <line x1="6" y1="6" x2="18" y2="18" />
-                        </svg></button>
+                        </svg>
+                    </button>
                 </div>
+
                 <nav class="flex flex-col gap-1 text-sm font-medium mt-4">
-                    <a href="#" class="px-3 py-3 rounded-xl bg-saffron-50 text-saffron-600 font-bold">خانه</a>
-                    <a href="#" class="px-3 py-3 rounded-xl text-ink">جستجوی حیوانات</a>
-                    <a href="#" class="px-3 py-3 rounded-xl text-ink">درباره ما</a>
+                    <a href="#" class="px-3 py-3 rounded-xl bg-primary/10 text-primary font-bold">خانه</a>
+                    <a href="#" class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">جستجوی
+                        حیوانات</a>
+                    <a href="#" class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">درباره ما</a>
 
                     <div class="mt-auto flex flex-col gap-2.5 pt-6">
                         @auth
-                            <div class="bg-saffron-50 border border-saffron-100 rounded-xl p-3 flex items-center gap-3">
+                            <div class="bg-primary/5 border border-primary/10 rounded-xl p-3 flex items-center gap-3">
                                 <div
-                                    class="w-9 h-9 rounded-full bg-saffron-500 text-white font-bold flex items-center justify-center text-sm">
+                                    class="w-9 h-9 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm">
                                     {{ mb_substr(auth()->user()->first_name, 0, 1) }}
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-xs font-bold text-ink">{{ auth()->user()->name }}</p>
-                                    <p class="text-[10px] text-ink-soft" dir="ltr">{{ auth()->user()->phone }}</p>
+                                    <p class="text-xs font-bold text-text-title">{{ auth()->user()->name }}</p>
+                                    <p class="text-[10px] text-text-body" dir="ltr">{{ auth()->user()->phone }}</p>
                                 </div>
                             </div>
                             <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                class="w-full bg-sand-100 text-coral-dark font-semibold text-xs py-2.5 rounded-xl">خروج از
-                                حساب</button>
+                                class="w-full bg-bg-secondary text-danger-custom font-semibold text-xs py-2.5 rounded-xl border border-border-custom hover:bg-danger-custom/10 transition-colors">
+                                خروج از حساب
+                            </button>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf
                             </form>
                         @else
                             <button @click="sidebarOpen = false; $dispatch('open-auth')"
-                                class="w-full bg-saffron-500 text-white font-bold text-sm py-3 rounded-xl">ورود به حساب
-                                کاربری</button>
+                                class="w-full bg-primary text-white font-bold text-sm py-3 rounded-xl hover:bg-primary-hover transition-colors">
+                                ورود به حساب کاربری
+                            </button>
                         @endauth
                     </div>
                 </nav>

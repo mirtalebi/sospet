@@ -1,6 +1,33 @@
 @import "tailwindcss";
 
+@import "tailwindcss";
+
 @theme {
+    
+  /* Primary & Brand Colors */
+  --color-primary: #2A9DB0;
+  --color-primary-hover: #21869A;
+  --color-cta: #F26D5B;
+  --color-cta-hover: #E55A46;
+
+  /* Backgrounds & Structure */
+  --color-bg-main: #FFFFFF;
+  --color-bg-secondary: #F7F9FB;
+  --color-card: #FFFFFF;
+  --color-border-custom: #E8EDF2;
+
+  /* Typography */
+  --color-text-title: #22324A;
+  --color-text-body: #5F6B7A;
+  --color-text-muted: #8E99A8;
+
+  /* Statuses */
+  --color-success-custom: #22C55E;
+  --color-warning-custom: #F59E0B;
+  --color-danger-custom: #EF4444;
+
+
+  
   --color-sand: #FBF5EC;
   --color-sand-100: #F5E9D6;
   
@@ -46,5 +73,60 @@ body {
     position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
     width: 12px; h: 12px; background-color: #FBF5EC; border-radius: 50%;
     box-shadow: inset -3px 0 5px rgba(0,0,0,0.05);
+}
+
+.report-map-marker {
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    background: rgba(42, 157, 176, 0.2);
+    border: 1px solid rgba(42, 157, 176, 0.45);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 18px rgba(34, 50, 74, 0.22);
+}
+
+.report-map-marker__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    background: #2A9DB0;
+    box-shadow: 0 0 0 5px rgba(42, 157, 176, 0.18);
+}
+
+.match-map-marker {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    background: rgba(242, 109, 91, 0.18);
+    border: 1px solid rgba(242, 109, 91, 0.5);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+}
+
+.match-map-marker__dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: #F26D5B;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 8px rgba(242, 109, 91, 0.14);
+    animation: match-marker-pulse 1.8s ease-out infinite;
+}
+
+@keyframes match-marker-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(242, 109, 91, 0.14);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 14px rgba(242, 109, 91, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(242, 109, 91, 0);
+    }
 }
 
