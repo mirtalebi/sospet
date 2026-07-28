@@ -59,10 +59,17 @@
                 <span class="font-display text-2xl text-text-title tracking-wide">ردپا</span>
             </div>
 
-            <button
-                class="px-5 h-10 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm relative">
-                ثبت آگهی
-            </button>
+            @auth
+                <a href="/report" wire:navigate
+                    class="px-5 h-10 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm relative">
+                    ثبت آگهی
+                </a>
+            @else
+                <button @click="$dispatch('open-auth')"
+                    class="px-5 h-10 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm relative">
+                    ثبت آگهی
+                </button>
+            @endauth
         </header>
 
         <!-- Dynamic Slot Content -->

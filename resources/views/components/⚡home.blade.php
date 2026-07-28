@@ -42,9 +42,12 @@ new class extends Component {
         // ۲. واکشی گزارش‌های گمشدگی (فوری)
         $lostPets = Pet::with('images')->where('type', 'lost')->where('is_resolved', false)->latest()->take(3)->get();
 
+        $provinces = DB::table('province_cities')->where('parent', 0)->get();
+
         return [
             'nearPets' => $petsQuery->latest()->take(8)->get(),
             'lostPets' => $lostPets,
+            'provinces' => $provinces,
         ];
     }
 };
@@ -107,15 +110,90 @@ new class extends Component {
         <div
             class="relative -mb-16 mt-5 bg-bg-main border border-border-custom rounded-[1.4rem] shadow-sm p-2 flex items-center gap-2">
             <span class="tag-hole" aria-hidden="true"></span>
-            <button type="button"
+            <button id="cityBtn" type="button"
                 class="flex items-center gap-1 shrink-0 ps-3 pe-2.5 py-2 rounded-2xl bg-bg-secondary text-text-body text-xs font-medium">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2">
                     <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" />
                     <circle cx="12" cy="9.5" r="2.3" />
                 </svg>
-                {{ $city }}
+                <span id="cityLabel">{{ $city }}</span>
             </button>
+
+            <!-- City Modal -->
+            <div id="cityModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40">
+                <div class="bg-white rounded-lg p-5 w-full max-w-sm mx-4">
+                    <h3 class="text-right font-bold mb-2">شهر خود را انتخاب کنید</h3>
+                    <select id="cityInput" class="w-full border rounded p-2 text-right mb-3">
+                        <option value="" disabled selected>استان یا شهر...</option>
+                        @foreach ($provinces as $province)
+                            <option value="{{ $province->id }}">{{ $province->title }}</option>
+                        @endforeach
+                    </select>
+                    <div class="flex justify-between gap-2">
+                        <button id="cityCancel" class="flex-1 px-3 py-2 rounded bg-border-custom">انصراف</button>
+                        <button id="citySave" class="flex-1 px-3 py-2 rounded bg-primary text-white">ذخیره</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                (function() {
+                    var btn = document.getElementById('cityBtn');
+                    var modal = document.getElementById('cityModal');
+                    var input = document.getElementById('cityInput');
+                    var save = document.getElementById('citySave');
+                    var cancel = document.getElementById('cityCancel');
+                    var label = document.getElementById('cityLabel');
+
+                    function setCookie(name, value, days) {
+                        var d = new Date();
+                        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+                        document.cookie = name + '=' + encodeURIComponent(value) + ';path=/;expires=' + d.toUTCString();
+                    }
+
+                    function getCookie(name) {
+                        var re = new RegExp('(?:^|; )' + name + '=([^;]*)');
+                        var m = document.cookie.match(re);
+                        return m ? decodeURIComponent(m[1]) : null;
+                    }
+
+                    // initialize from cookie
+                    var provinces = @json($provinces);
+                    var saved = getCookie('pawet_city');
+                    if (saved) label.textContent = provinces.find(p => p.id == saved)?.title || saved;
+
+                    btn.addEventListener('click', function() {
+                        // prefill with current label
+                        input.value = label.textContent || '';
+                        modal.classList.remove('hidden');
+                        modal.classList.add('flex');
+                        input.focus();
+                    });
+
+                    cancel.addEventListener('click', function() {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                    });
+
+                    save.addEventListener('click', function() {
+                        var v = input.value.trim();
+                        if (!v) return; // do nothing on empty
+                        setCookie('pawet_city', v, 365);
+                        label.textContent = provinces.find(p => p.id == v)?.title || saved;
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                    });
+
+                    // close when clicking backdrop
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === modal) {
+                            modal.classList.add('hidden');
+                            modal.classList.remove('flex');
+                        }
+                    });
+                })();
+            </script>
             <input type="text" wire:model.live.debounce.250ms="search" placeholder="دنبال چی می‌گردی؟ گربه، سگ..."
                 class="flex-1 bg-transparent text-sm text-text-title placeholder:text-text-muted outline-none px-1 min-w-0">
         </div>
