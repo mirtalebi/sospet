@@ -25,6 +25,14 @@ const matchMarkerIcon = L.divIcon({
 
 const getReportSection = (container) => container.closest('[data-report-section]');
 
+const scheduleMapInitialization = (container, initializer) => {
+	if (!(container instanceof HTMLElement)) {
+		return;
+	}
+
+	window.setTimeout(() => initializer(container), 120);
+};
+
 const reverseGeocodeCity = async (latitude, longitude) => {
 	if (!NESHAN_SERVICE_API_KEY) {
 		return '';
@@ -200,7 +208,7 @@ const initializeReportMap = (container) => {
 };
 
 const bootReportMaps = () => {
-	document.querySelectorAll('[data-report-map]').forEach((container) => initializeReportMap(container));
+	document.querySelectorAll('[data-report-map]').forEach((container) => scheduleMapInitialization(container, initializeReportMap));
 };
 
 const getMatchMapState = (section) => {
@@ -288,7 +296,7 @@ const initializeMatchMap = (container) => {
 };
 
 const bootMatchMaps = () => {
-	document.querySelectorAll('[data-match-map]').forEach((container) => initializeMatchMap(container));
+	document.querySelectorAll('[data-match-map]').forEach((container) => scheduleMapInitialization(container, initializeMatchMap));
 };
 
 const watchForReportMaps = () => {
@@ -297,8 +305,8 @@ const watchForReportMaps = () => {
 	}
 
 	window.__reportMapObserver = new MutationObserver(() => {
-		document.querySelectorAll('[data-report-map]').forEach((container) => initializeReportMap(container));
-		document.querySelectorAll('[data-match-map]').forEach((container) => initializeMatchMap(container));
+		document.querySelectorAll('[data-report-map]').forEach((container) => scheduleMapInitialization(container, initializeReportMap));
+		document.querySelectorAll('[data-match-map]').forEach((container) => scheduleMapInitialization(container, initializeMatchMap));
 	});
 
 	window.__reportMapObserver.observe(document.body, {

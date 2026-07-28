@@ -96,7 +96,7 @@ new class extends Component {
 ?>
 
 <div>
-    <div x-data="{ show: @entropy($isOpen) }" x-show="$wire.isOpen" @click="$wire.closeModal()"
+    <div x-data="{ show: $wire.entangle('isOpen') }" x-show="$wire.isOpen" @click="$wire.closeModal()"
         class="fixed inset-0 bg-ink/40 backdrop-blur-sm z-50 transition-opacity max-w-md mx-auto" style="display: none;">
     </div>
 

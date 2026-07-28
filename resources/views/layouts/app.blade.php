@@ -85,61 +85,53 @@
         @endphp
 
         <!-- Navigation Bar -->
-        <nav
-            class="fixed bottom-0 inset-x-0 bg-bg-main/95 backdrop-blur-md border-t border-border-custom px-4 pt-2.5 pb-safe shadow-md flex justify-around items-center z-40 rounded-t-[1.8rem]">
-            <a href="/" class="{{ $navLinkClass($isHome) }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-                </svg>
-                <span class="text-[10px] font-bold">خانه</span>
-            </a>
-            <a href="#" class="{{ $navLinkClass(false) }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2.2">
-                    <circle cx="11" cy="11" r="8" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-                <span class="text-[10px] font-medium">جستجو</span>
-            </a>
+        <div class="fixed bottom-5 inset-x-0 flex justify-center z-40 px-4">
+            <nav
+                class="bg-bg-main/90 backdrop-blur-md border border-border-custom px-4 py-1.5 shadow-lg flex items-center gap-6 rounded-full">
 
-            <!-- Floating Action Button -->
-            @auth
-                <a href="/report" wire:navigate
-                    class="relative -top-5 w-14 h-14 {{ $isReport ? 'bg-primary-hover' : 'bg-primary' }} text-white rounded-full flex items-center justify-center shadow-lg border-4 border-bg-main hover:bg-primary-hover transition-all active:scale-90 z-50">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="3">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
+                <!-- Home Link -->
+                <a href="/"
+                    class="flex flex-col items-center transition-transform active:scale-95 {{ $navLinkClass($isHome) }}">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
                     </svg>
+                    <span class="text-[9px] font-bold mt-0.5">خانه</span>
                 </a>
-            @else
-                <button @click="$dispatch('open-auth')"
-                    class="relative -top-5 w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-lg border-4 border-bg-main hover:bg-primary-hover transition-all active:scale-90 z-50">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="3">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                </button>
-            @endauth
 
-            <a href="#" class="{{ $navLinkClass(false) }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2.2">
-                    <path
-                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-                <span class="text-[10px] font-medium">نشان‌ها</span>
-            </a>
-            <a href="/profile" wire:navigate class="{{ $navLinkClass($isProfile) }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2.2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                </svg>
-                <span class="text-[10px] font-medium">پروفایل</span>
-            </a>
-        </nav>
+                <!-- Compact Center Action (Reporter) -->
+                @auth
+                    <a href="/report" wire:navigate
+                        class="w-9 h-9 {{ $isReport ? 'bg-primary-hover' : 'bg-primary' }} text-white rounded-full flex items-center justify-center shadow-sm hover:bg-primary-hover transition-all active:scale-90">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.8">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                    </a>
+                @else
+                    <button @click="$dispatch('open-auth')"
+                        class="w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center shadow-sm hover:bg-primary-hover transition-all active:scale-90">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.8">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                    </button>
+                @endauth
+
+                <!-- Profile Link -->
+                <a href="/profile" wire:navigate
+                    class="flex flex-col items-center transition-transform active:scale-95 {{ $navLinkClass($isProfile) }}">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <span class="text-[9px] font-medium mt-0.5">پروفایل</span>
+                </a>
+
+            </nav>
+        </div>
 
         <!-- Sidebar / Drawer Drawer Overlay and Content -->
         <div x-show="sidebarOpen" class="fixed inset-0 z-50 overflow-hidden" style="display: none;">
