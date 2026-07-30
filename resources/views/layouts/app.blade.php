@@ -16,36 +16,30 @@
     @livewireStyles
 </head>
 
-<body class="flex justify-center min-h-screen antialiased bg-bg-secondary selection:bg-primary/20">
+<!-- Cleaned body tag without the extra background and text utility classes -->
+
+<body class="">
 
     <div x-data="{ sidebarOpen: false }"
-        class="relative w-full max-w-md bg-bg-main flex flex-col min-h-screen shadow-2xl overflow-hidden ring-1 ring-border-custom">
+        class="relative w-full  bg-bg-main flex flex-col min-h-screen md:min-h-[85vh] overflow-hidden">
 
         <!-- Header -->
         <header
-            class="flex items-center justify-between px-5 py-2 bg-gradient-to-b from-primary/5 to-transparent shrink-0">
-            {{-- <button @click="sidebarOpen = true"
-                class="w-10 h-10 rounded-full bg-bg-main flex items-center justify-center border border-border-custom text-text-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2.5">
-                    <line x1="3" y1="12" x2="21" y2="12" />
-                    <line x1="3" y1="6" x2="21" y2="6" />
-                    <line x1="3" y1="18" x2="21" y2="18" />
-                </svg>
-            </button> --}}
-            <div class="flex items-center gap-1.5">
-                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center"
-                    style="background: rgb(231, 244, 246);"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                        height="16" viewBox="0 0 24 24" fill="none" stroke="#1298AE" stroke-width="2.3"
-                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print md:hidden"
-                        aria-hidden="true">
+            class="flex items-center justify-between px-5 py-2 md:px-10 md:py-5 bg-gradient-to-b from-primary/5 to-transparent shrink-0">
+            <div class="flex items-center gap-1.5 md:gap-3">
+                <div class="w-8 h-8 md:w-11 md:h-11 rounded-full flex items-center justify-center"
+                    style="background: rgb(231, 244, 246);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                        fill="none" stroke="#1298AE" stroke-width="2.3" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-paw-print md:hidden" aria-hidden="true">
                         <circle cx="11" cy="4" r="2"></circle>
                         <circle cx="18" cy="8" r="2"></circle>
                         <circle cx="20" cy="16" r="2"></circle>
                         <path
                             d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
                         </path>
-                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
                         fill="none" stroke="#1298AE" stroke-width="2.3" stroke-linecap="round"
                         stroke-linejoin="round" class="lucide lucide-paw-print hidden md:block" aria-hidden="true">
                         <circle cx="11" cy="4" r="2"></circle>
@@ -54,19 +48,20 @@
                         <path
                             d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
                         </path>
-                    </svg></div>
+                    </svg>
+                </div>
 
-                <span class="font-display text-2xl text-text-title tracking-wide">ردپا</span>
+                <span class="font-display text-2xl md:text-3xl text-text-title tracking-wide">ردپا</span>
             </div>
 
             @auth
                 <a href="/report" wire:navigate
-                    class="px-5 h-10 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm relative">
+                    class="px-5 h-10 md:h-11 md:px-7 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm font-medium relative">
                     ثبت آگهی
                 </a>
             @else
                 <button @click="$dispatch('open-auth')"
-                    class="px-5 h-10 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm relative">
+                    class="px-5 h-10 md:h-11 md:px-7 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm font-medium relative">
                     ثبت آگهی
                 </button>
             @endauth
@@ -85,24 +80,24 @@
         @endphp
 
         <!-- Navigation Bar -->
-        <div class="fixed bottom-5 inset-x-0 flex justify-center z-40 px-4">
+        <div class="fixed bottom-5 inset-x-0 flex justify-center z-40 px-4 md:bottom-8">
             <nav
-                class="bg-bg-main/90 backdrop-blur-md border border-border-custom px-4 py-1.5 shadow-lg flex items-center gap-6 rounded-full">
+                class="bg-bg-main/90 backdrop-blur-md border border-border-custom px-5 py-2 md:px-8 md:py-3 shadow-lg flex items-center gap-8 rounded-full">
 
                 <!-- Home Link -->
                 <a href="/"
                     class="flex flex-col items-center transition-transform active:scale-95 {{ $navLinkClass($isHome) }}">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
                     </svg>
-                    <span class="text-[9px] font-bold">خانه</span>
+                    <span class="text-[10px] md:text-[11px] font-bold">خانه</span>
                 </a>
 
-                <!-- Compact Center Action (Reporter) -->
+                <!-- Compact Center Action -->
                 @auth
                     <a href="/report" wire:navigate
-                        class="w-9 h-9 {{ $isReport ? 'bg-primary-hover' : 'bg-primary' }} text-white rounded-full flex items-center justify-center shadow-sm hover:bg-primary-hover transition-all active:scale-90">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        class="w-10 h-10 {{ $isReport ? 'bg-primary-hover' : 'bg-primary' }} text-white rounded-full flex items-center justify-center shadow-sm hover:bg-primary-hover transition-all active:scale-90">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.8">
                             <line x1="12" y1="5" x2="12" y2="19" />
                             <line x1="5" y1="12" x2="19" y2="12" />
@@ -110,8 +105,8 @@
                     </a>
                 @else
                     <button @click="$dispatch('open-auth')"
-                        class="w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center shadow-sm hover:bg-primary-hover transition-all active:scale-90">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shadow-sm hover:bg-primary-hover transition-all active:scale-90">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.8">
                             <line x1="12" y1="5" x2="12" y2="19" />
                             <line x1="5" y1="12" x2="19" y2="12" />
@@ -122,12 +117,12 @@
                 <!-- Profile Link -->
                 <a href="/profile" wire:navigate
                     class="flex flex-col items-center transition-transform active:scale-95 {{ $navLinkClass($isProfile) }}">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                         <circle cx="12" cy="7" r="4" />
                     </svg>
-                    <span class="text-[9px] font-medium">پروفایل</span>
+                    <span class="text-[10px] md:text-[11px] font-medium">پروفایل</span>
                 </a>
 
             </nav>
