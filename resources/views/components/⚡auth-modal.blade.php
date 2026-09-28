@@ -155,7 +155,7 @@ new class extends Component {
         @if ($step === 3)
             <div class="text-center mb-5">
                 <h3 class="font-display text-xl text-ink">تکمیل مشخصات</h3>
-                <p class="text-xs text-ink-soft mt-1">به پاوِت خوش اومدی! برای اولین ورود نام خودت را وارد کن.</p>
+                <p class="text-xs text-ink-soft mt-1">به ساس‌پت خوش اومدی! برای اولین ورود نام خودت را وارد کن.</p>
             </div>
             <form wire:submit.prevent="register" class="flex flex-col gap-4">
                 <div class="grid grid-cols-2 gap-3">

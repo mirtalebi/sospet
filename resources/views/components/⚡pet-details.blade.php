@@ -232,7 +232,7 @@ new class extends Component {
                                 </svg>
                             </p>
                             <p class="text-[11px] text-zinc-400 mt-0.5 text-ellipsis overflow-hidden whitespace-nowrap"
-                                x-text="listingType === 'lost' ? 'گزارش‌دهنده پاوِت' : 'ثبت‌کننده آگهی پاوِت'"></p>
+                                x-text="listingType === 'lost' ? 'گزارش‌دهنده ساس‌پت' : 'ثبت‌کننده آگهی ساس‌پت'"></p>
                         </div>
                     </div>
                     <button
@@ -251,7 +251,7 @@ new class extends Component {
                     </h3>
                     <ul class="text-xs text-amber-900/80 space-y-1 list-disc ps-4 leading-6">
                         <li>جلسه اول ملاقات با حیوان را ترجیحاً در کلینیک دامپزشکی بگذارید.</li>
-                        <li>پاوِت بستری رایگان است؛ قبل از تحویل حیوان هیچ مبلغی به عنوان بیعانه واریز نکنید.</li>
+                        <li>ساس‌پت بستری رایگان است؛ قبل از تحویل حیوان هیچ مبلغی به عنوان بیعانه واریز نکنید.</li>
                         <li>از سلامت ظاهری و وضعیت شناسنامه حمایتی حیوان مطمئن شوید.</li>
                     </ul>
                 </div>

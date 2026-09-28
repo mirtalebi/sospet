@@ -153,7 +153,7 @@ new class extends Component {
                             }
 
                             var provinces = @json($provinces);
-                            var saved = getCookie('pawet_city');
+                            var saved = getCookie('sospet_city');
                             if (saved) label.textContent = provinces.find(p => p.id == saved)?.title || saved;
 
                             btn.addEventListener('click', function() {
@@ -171,7 +171,7 @@ new class extends Component {
                             save.addEventListener('click', function() {
                                 var v = input.value.trim();
                                 if (!v) return;
-                                setCookie('pawet_city', v, 365);
+                                setCookie('sospet_city', v, 365);
                                 label.textContent = provinces.find(p => p.id == v)?.title || saved;
                                 modal.classList.add('hidden');
                                 modal.classList.remove('flex');
@@ -356,7 +356,7 @@ new class extends Component {
         <div
             class="max-w-6xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-body">
             <div>
-                <p>© 2026 پاوِت. تمامی حقوق محفوظ است.</p>
+                <p>© 2026 ساس‌پت. تمامی حقوق محفوظ است.</p>
             </div>
             <div class="flex gap-6 text-xs text-text-muted font-medium">
                 <a href="#" class="hover:text-primary transition-colors">درباره ما</a>

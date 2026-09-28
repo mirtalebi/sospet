@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Pawet — برای هر حیوونی، یه خونه</title>
+    <title>SOS pet — برای هر حیوونی، یه خونه</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,7 +138,7 @@
                             <circle cx="15.5" cy="5.8" r="2.1" />
                         </svg>
                     </span>
-                    <span class="font-brand font-extrabold text-lg text-ink tracking-tight">Pawet</span>
+                    <span class="font-brand font-extrabold text-lg text-ink tracking-tight">SOS Pet</span>
                 </div>
 
                 <button aria-label="اعلان‌ها"
@@ -514,7 +514,7 @@
                 <!-- ===== STATS ===== -->
                 <section class="pt-9 px-5">
                     <div class="bg-sand-100 rounded-2xl px-4 py-5">
-                        <p class="text-xs font-semibold text-ink-soft mb-3">پاوت تا امروز</p>
+                        <p class="text-xs font-semibold text-ink-soft mb-3">ساس‌پت تا امروز</p>
                         <div class="grid grid-cols-3 text-center gap-2">
                             <div>
                                 <p class="font-display text-xl text-saffron-600">۱٬۲۰۰+</p>
@@ -568,14 +568,14 @@
                                 <circle cx="15.5" cy="5.8" r="2.1" />
                             </svg>
                         </span>
-                        <span class="font-brand font-extrabold text-sm text-ink">Pawet</span>
+                        <span class="font-brand font-extrabold text-sm text-ink">SOS Pet</span>
                     </div>
                     <div class="flex flex-wrap gap-x-4 gap-y-2 text-xs text-ink-soft mb-4">
-                        <a href="#" class="hover:text-ink">درباره پاوت</a>
+                        <a href="#" class="hover:text-ink">درباره ساس‌پت</a>
                         <a href="#" class="hover:text-ink">قوانین و حریم خصوصی</a>
                         <a href="#" class="hover:text-ink">تماس با ما</a>
                     </div>
-                    <p class="text-[11px] text-ink-soft/70">© ۱۴۰۵ Pawet — ساخته‌شده با ❤️ در ایران.</p>
+                    <p class="text-[11px] text-ink-soft/70">© ۱۴۰۵ SOS Pet — ساخته‌شده با ❤️ در ایران.</p>
                 </footer>
             </main>
 
@@ -715,7 +715,7 @@
                                     <circle cx="15.5" cy="5.8" r="2.1" />
                                 </svg>
                             </span>
-                            <span class="font-brand font-extrabold text-base text-ink">Pawet</span>
+                            <span class="font-brand font-extrabold text-base text-ink">SOS Pet</span>
                         </div>
                         <button @click="drawerOpen=false" aria-label="بستن منو"
                             class="grid place-items-center w-9 h-9 rounded-full bg-sand-100 text-ink-soft">
