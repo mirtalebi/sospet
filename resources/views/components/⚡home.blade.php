@@ -71,7 +71,7 @@ new class extends Component {
 ?>
 
 <div class="flex flex-col min-h-screen bg-bg-secondary">
-    <main class="flex-1 overflow-y-auto no-scrollbar pb-12">
+    <main class="flex-1 overflow-y-auto no-scrollbar pb-40">
 
         <!-- Top Hero Section -->
         <section
@@ -349,21 +349,7 @@ new class extends Component {
                 </div>
             @endif
         </section>
-    </main>
 
-    <!-- DESKTOP ONLY: Footer Elements -->
-    <footer class="hidden md:block bg-bg-main border-t border-border-custom py-8 mt-auto">
-        <div
-            class="max-w-6xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-body">
-            <div>
-                <p>© 2026 ساس‌پت. تمامی حقوق محفوظ است.</p>
-            </div>
-            <div class="flex gap-6 text-xs text-text-muted font-medium">
-                <a href="#" class="hover:text-primary transition-colors">درباره ما</a>
-                <a href="#" class="hover:text-primary transition-colors">تماس با پشتیبانی</a>
-                <a href="#" class="hover:text-primary transition-colors">قوانین و مقررات</a>
-                <a href="#" class="hover:text-primary transition-colors">حریم خصوصی</a>
-            </div>
-        </div>
-    </footer>
+        @include('partials.site-footer')
+    </main>
 </div>

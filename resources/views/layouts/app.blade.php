@@ -80,7 +80,7 @@
         @endphp
 
         <!-- Navigation Bar -->
-        <div class="fixed bottom-5 inset-x-0 flex justify-center z-40 px-4 md:bottom-8">
+        <div class="fixed bottom-5 inset-x-1/2 flex justify-center z-40 px-4 md:bottom-8">
             <nav
                 class="bg-bg-main/90 backdrop-blur-md border border-border-custom px-5 py-2 md:px-8 md:py-3 shadow-lg flex items-center gap-8 rounded-full">
 

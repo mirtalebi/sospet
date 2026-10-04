@@ -571,9 +571,10 @@
                         <span class="font-brand font-extrabold text-sm text-ink">SOS Pet</span>
                     </div>
                     <div class="flex flex-wrap gap-x-4 gap-y-2 text-xs text-ink-soft mb-4">
-                        <a href="#" class="hover:text-ink">درباره ساس‌پت</a>
-                        <a href="#" class="hover:text-ink">قوانین و حریم خصوصی</a>
-                        <a href="#" class="hover:text-ink">تماس با ما</a>
+                        <a href="{{ route('about-us') }}" wire:navigate class="hover:text-ink">درباره ساس‌پت</a>
+                        <a href="{{ route('support') }}" wire:navigate class="hover:text-ink">پشتیبانی</a>
+                        <a href="{{ route('terms') }}" wire:navigate class="hover:text-ink">قوانین و مقررات</a>
+                        <a href="{{ route('privacy') }}" wire:navigate class="hover:text-ink">حریم خصوصی</a>
                     </div>
                     <p class="text-[11px] text-ink-soft/70">© ۱۴۰۵ SOS Pet — ساخته‌شده با ❤️ در ایران.</p>
                 </footer>
