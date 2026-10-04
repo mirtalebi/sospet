@@ -9,7 +9,9 @@ new class extends Component {
 
     public function mount($id)
     {
-        $this->pet = Pet::with(['images', 'user'])->findOrFail($id);
+        $this->pet = Pet::with(['images', 'user'])
+            ->visible()
+            ->findOrFail($id);
         $this->totalImages = $this->pet->images->count();
     }
 };

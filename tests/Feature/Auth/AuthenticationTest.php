@@ -1,58 +1,41 @@
 <?php
 
 use App\Models\User;
-use Laravel\Fortify\Features;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 
-test('login screen can be rendered', function () {
-    $response = $this->get(route('login'));
+uses(RefreshDatabase::class);
 
-    $response->assertOk();
+test('login page redirects to the OTP modal on the home page', function () {
+    $this->get(route('login'))->assertRedirect(route('home', ['login' => 1]));
 });
 
-test('users can authenticate using the login screen', function () {
-    $user = User::factory()->create();
-
-    $response = $this->post(route('login.store'), [
-        'email' => $user->email,
-        'password' => 'password',
-    ]);
-
-    $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect(route('dashboard', absolute: false));
-
-    $this->assertAuthenticated();
+test('guests hitting a protected page are sent to the OTP modal', function () {
+    $this->get('/profile')->assertRedirect(route('home', ['login' => 1]));
 });
 
-test('users can not authenticate with invalid password', function () {
-    $user = User::factory()->create();
+test('existing users can log in with OTP', function () {
+    $user = User::factory()->create(['mobile' => '09120000000']);
 
-    $response = $this->post(route('login.store'), [
-        'email' => $user->email,
-        'password' => 'wrong-password',
-    ]);
+    Livewire::test('auth-modal')
+        ->set('mobile', '09120000000')
+        ->call('sendOtp')
+        ->set('otp', '1234')
+        ->call('verifyOtp');
 
-    $response->assertSessionHasErrorsIn('email');
-
-    $this->assertGuest();
+    $this->assertAuthenticatedAs($user);
 });
 
-test('users with two factor enabled are redirected to two factor challenge', function () {
-    $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
+test('wrong OTP does not log in', function () {
+    User::factory()->create(['mobile' => '09120000000']);
 
-    Features::twoFactorAuthentication([
-        'confirm' => true,
-        'confirmPassword' => true,
-    ]);
+    Livewire::test('auth-modal')
+        ->set('mobile', '09120000000')
+        ->call('sendOtp')
+        ->set('otp', '0000')
+        ->call('verifyOtp')
+        ->assertHasErrors('otp');
 
-    $user = User::factory()->withTwoFactor()->create();
-
-    $response = $this->post(route('login.store'), [
-        'email' => $user->email,
-        'password' => 'password',
-    ]);
-
-    $response->assertRedirect(route('two-factor.login'));
     $this->assertGuest();
 });
 

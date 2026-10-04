@@ -13,6 +13,11 @@ new class extends Component {
     public $first_name = '';
     public $last_name = '';
 
+    public function mount()
+    {
+        $this->isOpen = request()->boolean('login') && ! auth()->check();
+    }
+
     // گوش دادن به رویداد باز شدن مودال از سراسر برنامه
     #[On('open-auth')]
     public function openModal()

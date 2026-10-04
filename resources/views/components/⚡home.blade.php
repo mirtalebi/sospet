@@ -40,7 +40,7 @@ new class extends Component {
     public function with(): array
     {
         $petsQuery = Pet::with('images')
-            ->where('is_resolved', false)
+            ->active()
             ->whereIn('type', ['adoption', 'found']);
 
         if ($this->activeTab !== 'all') {
@@ -57,7 +57,7 @@ new class extends Component {
             });
         }
 
-        $lostPets = Pet::with('images')->where('type', 'lost')->where('is_resolved', false)->latest()->take(3)->get();
+        $lostPets = Pet::with('images')->where('type', 'lost')->active()->latest()->take(3)->get();
         $provinces = DB::table('province_cities')->where('parent', 0)->get();
 
         return [

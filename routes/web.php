@@ -12,6 +12,12 @@ Route::livewire('/match', 'match-pets')->name('match-pets');
 Route::livewire('/profile', 'user-profile')->middleware('auth');
 Route::livewire('/report', 'report-pet')->middleware('auth');
 
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::livewire('/', 'pages::admin.dashboard')->name('dashboard');
+    Route::livewire('/users', 'pages::admin.users')->name('users');
+    Route::livewire('/pets', 'pages::admin.pets')->name('pets');
+});
+
 Route::post('/logout', function () {
     auth()->logout();
     request()->session()->invalidate();

@@ -55,6 +55,9 @@
             </div>
 
             @auth
+                @if (auth()->user()->isAdmin())
+                    <a href="{{ route('admin.dashboard') }}" class="text-xs font-bold text-primary">پنل مدیریت</a>
+                @endif
                 <a href="/report" wire:navigate
                     class="px-5 h-10 md:h-11 md:px-7 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm font-medium relative">
                     ثبت آگهی
