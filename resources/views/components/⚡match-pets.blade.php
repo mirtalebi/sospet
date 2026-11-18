@@ -170,32 +170,7 @@ new class extends Component {
                     wire:target="selectedLatitude,selectedLongitude,locationPermission,selectedCity"
                     class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3">
                     @forelse($pets as $pet)
-                        <a href="/pet/{{ $pet->id }}" wire:navigate
-                            class="bg-card rounded-2xl overflow-hidden border border-border-custom shadow-sm hover:shadow-md transition group">
-                            <div class="relative h-28 md:h-36 bg-bg-secondary overflow-hidden">
-                                <img src="{{ $pet->images->first()?->image_url }}"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                                    alt="{{ $pet->title }}">
-                                <span
-                                    class="absolute bottom-2 inset-s-2 text-white text-[10px] font-bold px-2 py-0.5 rounded-full {{ $pet->type === 'found' ? 'bg-success-custom' : 'bg-danger-custom' }}">
-                                    {{ $pet->type === 'found' ? 'پیدا شده' : 'گم شده' }}
-                                </span>
-                            </div>
-                            <div class="p-2.5">
-                                <h3
-                                    class="font-bold text-sm text-text-title text-ellipsis overflow-hidden whitespace-nowrap">
-                                    {{ $pet->title }}</h3>
-                                <p class="text-[11px] text-text-body mt-0.5">{{ $pet->pet_type }} ·
-                                    {{ $pet->breed }}</p>
-                                <p class="text-[11px] text-primary font-semibold mt-1">{{ $pet->city }}،
-                                    {{ $pet->area }}</p>
-                                @if (isset($pet->distance_km))
-                                    <p class="text-[10px] text-success-custom font-bold mt-1">
-                                        فاصله تقریبی: {{ number_format($pet->distance_km, 1) }} کیلومتر
-                                    </p>
-                                @endif
-                            </div>
-                        </a>
+                        @include('partials.pet-card', ['pet' => $pet])
                     @empty
                         <div
                             class="col-span-full text-center py-12 text-xs md:text-sm text-text-muted bg-bg-main rounded-2xl border border-dashed border-border-custom px-4">

@@ -74,127 +74,261 @@ new class extends Component {
     <main class="flex-1 overflow-y-auto no-scrollbar pb-40">
 
         <!-- Top Hero Section -->
-        <section
-            class="relative bg-gradient-to-b from-primary/10 via-primary/5 to-bg-secondary px-5 pt-2 pb-12 md:px-10 md:pt-6 md:pb-20 rounded-b-[2.5rem] md:rounded-b-[4rem]">
-            <div class="max-w-6xl mx-auto w-full">
-                <div class="flex justify-between md:items-center md:max-w-4xl md:mx-auto">
-                    <h1 class="font-display text-[2.1rem] md:text-5xl leading-[1.35] text-text-title mt-4">
-                        برای تپیدن
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"
-                            class="inline-block w-[1.15em] h-[1.15em] align-[-0.15em] mx-1" aria-hidden="true">
-                            <path fill="#ef4444"
-                                d="M32 58 C30 56 9 41 9 22 C9 14 15 8 23 8 C27 8 30 10 32 14 C34 10 37 8 41 8 C49 8 55 14 55 22 C55 41 34 56 32 58Z" />
-                            <g fill="#FFF7ED" transform="translate(18 17) rotate(-18 14 14)">
-                                <path
-                                    d="M10 12 C7 12 5 14.5 5 18 C5 22.5 8 25.5 12 25.5 C16 25.5 19 22.5 19 18 C19 14.5 17 12 14 12 C13 11.5 11 11.5 10 12Z" />
-                                <circle cx="5" cy="9" r="2.3" />
-                                <circle cx="10" cy="5.5" r="2.4" />
-                                <circle cx="16" cy="5.5" r="2.4" />
-                                <circle cx="21" cy="9" r="2.3" />
-                            </g>
-                        </svg>
-                        خونه ها
-                    </h1>
-                    <img src="/assets/img/chat-1.png" class="h-28 mt-2 md:h-40 object-contain" alt="Hero Image">
-                </div>
+        <section class="relative overflow-hidden px-5 pb-5 pt-4 md:px-10 md:pb-7 md:pt-5">
+            <!-- Soft storybook backdrop -->
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#EAF6F8] via-[#FBF6EC] to-bg-secondary"></div>
+            <div class="pointer-events-none absolute -top-20 start-[18%] h-56 w-56 rounded-full bg-primary/15 blur-3xl"></div>
+            <div class="pointer-events-none absolute -bottom-20 end-0 h-56 w-56 rounded-full bg-cta/10 blur-3xl"></div>
 
-                <!-- Search Bar Container -->
-                <div
-                    class="relative -mb-16 mt-5 bg-bg-main border border-border-custom rounded-[1.4rem] shadow-sm p-2 flex items-center gap-2 md:max-w-2xl md:mx-auto md:mt-10 md:-mb-26">
-                    <span class="tag-hole" aria-hidden="true"></span>
-                    <button id="cityBtn" type="button"
-                        class="flex items-center gap-1 shrink-0 ps-3 pe-2.5 py-2 rounded-2xl bg-bg-secondary text-text-body text-xs font-medium">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" />
-                            <circle cx="12" cy="9.5" r="2.3" />
-                        </svg>
-                        <span id="cityLabel">{{ $city }}</span>
-                    </button>
+            <!-- Wandering paw prints -->
+            <svg class="pointer-events-none absolute start-[5%] top-6 hidden h-8 w-8 -rotate-12 text-primary/10 lg:block"
+                viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <g>
+                    <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
+                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2" transform="rotate(-22 6.9 8)" />
+                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2" transform="rotate(22 17.1 8)" />
+                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(-38 4.5 13.2)" />
+                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(38 19.5 13.2)" />
+                    <path d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                </g>
+            </svg>
+            <svg class="pointer-events-none absolute end-[7%] bottom-8 h-7 w-7 rotate-12 text-cta/20" viewBox="0 0 24 24"
+                fill="currentColor" aria-hidden="true">
+                <g>
+                    <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
+                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2" transform="rotate(-22 6.9 8)" />
+                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2" transform="rotate(22 17.1 8)" />
+                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(-38 4.5 13.2)" />
+                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(38 19.5 13.2)" />
+                    <path d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                </g>
+            </svg>
 
-                    <!-- City Modal -->
-                    <div id="cityModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40">
-                        <div class="bg-white rounded-lg p-5 w-full max-w-sm mx-4">
-                            <h3 class="text-right font-bold mb-2">شهر خود را انتخاب کنید</h3>
-                            <select id="cityInput" class="w-full border rounded p-2 text-right mb-3">
-                                <option value="" disabled selected>استان یا شهر...</option>
-                                @foreach ($provinces as $province)
-                                    <option value="{{ $province->id }}">{{ $province->title }}</option>
+            <div class="relative mx-auto w-full max-w-6xl">
+                <div class="grid items-center gap-5 lg:grid-cols-[1fr_auto] lg:gap-10">
+
+                    <!-- Copy + search -->
+                    <div class="text-center lg:text-right">
+                        <span
+                            class="inline-flex items-center gap-1 rounded-full border border-primary/20 bg-white/70 px-2.5 py-1 text-[10px] font-bold text-primary shadow-sm backdrop-blur">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <g>
+                                    <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
+                                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2" transform="rotate(-22 6.9 8)" />
+                                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2" transform="rotate(22 17.1 8)" />
+                                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(-38 4.5 13.2)" />
+                                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(38 19.5 13.2)" />
+                                    <path d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                                </g>
+                            </svg>
+                            به ساس‌پت خوش اومدی
+                        </span>
+
+                        <h1 class="mt-2 text-balance font-display text-[1.75rem] leading-[1.55] text-text-title sm:text-[2.1rem] lg:text-[2.5rem]">
+                            برای تپیدن
+                            <span class="whitespace-nowrap">
+                                <span class="relative inline-block px-1 text-primary">
+                                    خونه‌ها
+                                    <svg class="absolute inset-x-0 -bottom-1 h-2 w-full text-cta/70" viewBox="0 0 160 12"
+                                        preserveAspectRatio="none" fill="none" aria-hidden="true">
+                                        <path d="M3 9C30 3 60 2 80 5s45 4 77-2" stroke="currentColor" stroke-width="4"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"
+                                    class="mx-1 inline-block h-[0.85em] w-[0.85em] align-[-0.05em]" aria-hidden="true">
+                                    <path fill="#ef4444"
+                                        d="M32 58 C30 56 9 41 9 22 C9 14 15 8 23 8 C27 8 30 10 32 14 C34 10 37 8 41 8 C49 8 55 14 55 22 C55 41 34 56 32 58Z" />
+                                    <g fill="#FFF7ED" transform="translate(18 17) rotate(-18 14 14)">
+                                        <path
+                                            d="M10 12 C7 12 5 14.5 5 18 C5 22.5 8 25.5 12 25.5 C16 25.5 19 22.5 19 18 C19 14.5 17 12 14 12 C13 11.5 11 11.5 10 12Z" />
+                                        <circle cx="5" cy="9" r="2.3" />
+                                        <circle cx="10" cy="5.5" r="2.4" />
+                                        <circle cx="16" cy="5.5" r="2.4" />
+                                        <circle cx="21" cy="9" r="2.3" />
+                                    </g>
+                                </svg>
+                            </span>
+                        </h1>
+
+                        <p class="mx-auto mt-2 max-w-md text-[11.5px] leading-6 text-text-body lg:mx-0 lg:max-w-lg lg:text-[13px]">
+                            اینجا حیوون‌های گم‌شده دوباره پیدا می‌شن و بی‌خونه‌ها یه خانواده‌ی مهربون. تو هم می‌تونی بخشی
+                            از این داستان باشی.
+                        </p>
+
+                        <!-- Search Bar -->
+                        <div class="relative mx-auto mt-4 w-full max-w-md md:max-w-xl lg:mx-0">
+                            <div
+                                class="flex items-center gap-1 rounded-[1.15rem] border border-border-custom bg-white p-1 shadow-[0_16px_35px_-28px_rgba(34,50,74,0.55)] transition focus-within:border-primary/50 focus-within:ring-4 focus-within:ring-primary/10">
+                                <button id="cityBtn" type="button"
+                                    class="flex shrink-0 items-center gap-1.5 rounded-full bg-bg-secondary px-2.5 py-2 text-[11px] font-bold text-text-body transition hover:text-primary">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" />
+                                        <circle cx="12" cy="9.5" r="2.3" />
+                                    </svg>
+                                    <span id="cityLabel">{{ $city }}</span>
+                                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5" aria-hidden="true">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </button>
+
+                                <span class="h-6 w-px shrink-0 bg-border-custom" aria-hidden="true"></span>
+
+                                <svg class="ms-1 shrink-0 text-text-muted" width="17" height="17" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <circle cx="11" cy="11" r="7" />
+                                    <path d="M20 20l-3.5-3.5" stroke-linecap="round" />
+                                </svg>
+
+                                <input type="text" wire:model.live.debounce.250ms="search"
+                                    placeholder="دنبال چی می‌گردی؟ گربه، سگ..."
+                                    class="min-w-0 flex-1 bg-transparent px-1 py-1.5 text-[13px] text-text-title placeholder:text-text-muted outline-none">
+                            </div>
+
+                            <div class="mt-2 flex flex-wrap items-center justify-center gap-1.5 lg:justify-start">
+                                <span class="text-[10px] font-bold text-text-muted">پیشنهاد دوستانه:</span>
+                                @foreach (['گربه', 'سگ', 'پیدا شده'] as $suggestion)
+                                    <button type="button" wire:click="$set('search', '{{ $suggestion }}')"
+                                        class="rounded-full border border-border-custom bg-white/80 px-2.5 py-1 text-[10px] font-bold text-text-body transition hover:border-primary/40 hover:text-primary">{{ $suggestion }}</button>
                                 @endforeach
-                            </select>
-                            <div class="flex justify-between gap-2">
-                                <button id="cityCancel"
-                                    class="flex-1 px-3 py-2 rounded bg-border-custom">انصراف</button>
-                                <button id="citySave"
-                                    class="flex-1 px-3 py-2 rounded bg-primary text-white">ذخیره</button>
                             </div>
                         </div>
                     </div>
 
-                    <script>
-                        (function() {
-                            var btn = document.getElementById('cityBtn');
-                            var modal = document.getElementById('cityModal');
-                            var input = document.getElementById('cityInput');
-                            var save = document.getElementById('citySave');
-                            var cancel = document.getElementById('cityCancel');
-                            var label = document.getElementById('cityLabel');
+                    <!-- Illustration (compact, desktop only) -->
+                    <div class="relative mx-auto hidden w-[260px] lg:block xl:w-[300px]">
+                        <div
+                            class="relative rounded-[1.8rem] bg-white/55 p-2 shadow-[0_24px_45px_-30px_rgba(34,50,74,0.45)] ring-1 ring-white/80 backdrop-blur-sm">
+                            <div
+                                class="overflow-hidden rounded-[1.4rem] bg-gradient-to-br from-[#FFF4E6] via-[#F6FBF8] to-[#E9F6F8]">
+                                <img src="/assets/img/chat-1.png" alt="هم‌آغوشی مهربان یک آدم با سگ و گربه"
+                                    class="h-[240px] w-full object-contain object-bottom xl:h-[270px]">
+                            </div>
 
-                            function setCookie(name, value, days) {
-                                var d = new Date();
-                                d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-                                document.cookie = name + '=' + encodeURIComponent(value) + ';path=/;expires=' + d.toUTCString();
-                            }
-
-                            function getCookie(name) {
-                                var re = new RegExp('(?:^|; )' + name + '=([^;]*)');
-                                var m = document.cookie.match(re);
-                                return m ? decodeURIComponent(m[1]) : null;
-                            }
-
-                            var provinces = @json($provinces);
-                            var saved = getCookie('sospet_city');
-                            if (saved) label.textContent = provinces.find(p => p.id == saved)?.title || saved;
-
-                            btn.addEventListener('click', function() {
-                                input.value = label.textContent || '';
-                                modal.classList.remove('hidden');
-                                modal.classList.add('flex');
-                                input.focus();
-                            });
-
-                            cancel.addEventListener('click', function() {
-                                modal.classList.add('hidden');
-                                modal.classList.remove('flex');
-                            });
-
-                            save.addEventListener('click', function() {
-                                var v = input.value.trim();
-                                if (!v) return;
-                                setCookie('sospet_city', v, 365);
-                                label.textContent = provinces.find(p => p.id == v)?.title || saved;
-                                modal.classList.add('hidden');
-                                modal.classList.remove('flex');
-                            });
-
-                            modal.addEventListener('click', function(e) {
-                                if (e.target === modal) {
-                                    modal.classList.add('hidden');
-                                    modal.classList.remove('flex');
-                                }
-                            });
-                        })();
-                    </script>
-                    <input type="text" wire:model.live.debounce.250ms="search"
-                        placeholder="دنبال چی می‌گردی؟ گربه، سگ..."
-                        class="flex-1 bg-transparent text-sm text-text-title placeholder:text-text-muted outline-none px-1 min-w-0">
+                            <div
+                                class="absolute -start-3 top-4 flex rotate-[-3deg] items-center gap-1.5 rounded-xl bg-white/95 px-2.5 py-1.5 text-[10px] font-bold text-text-title shadow-lg ring-1 ring-border-custom">
+                                <span class="grid h-5 w-5 place-items-center rounded-full bg-primary/10 text-primary">
+                                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <g>
+                                            <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
+                                            <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2" transform="rotate(-22 6.9 8)" />
+                                            <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2" transform="rotate(22 17.1 8)" />
+                                            <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(-38 4.5 13.2)" />
+                                            <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(38 19.5 13.2)" />
+                                            <path d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                                        </g>
+                                    </svg>
+                                </span>
+                                کنار هم، امن و خوشحال
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- City Modal -->
+                <div id="cityModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-text-title/40 p-4 backdrop-blur-sm">
+                    <div class="w-full max-w-sm rounded-[2rem] border border-border-custom bg-bg-main p-5 shadow-2xl">
+                        <div class="mb-4 flex items-start justify-between gap-3">
+                            <div class="flex items-center gap-2.5">
+                                <span class="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" />
+                                        <circle cx="12" cy="9.5" r="2.3" />
+                                    </svg>
+                                </span>
+                                <div class="text-right">
+                                    <h3 class="text-sm font-bold text-text-title">شهرت رو انتخاب کن</h3>
+                                    <p class="mt-0.5 text-[10px] text-text-muted">نتایج نزدیک به شهرت رو ببین.</p>
+                                </div>
+                            </div>
+                            <button id="cityCancel" type="button" aria-label="بستن"
+                                class="grid h-8 w-8 place-items-center rounded-full bg-bg-secondary text-text-muted transition hover:text-text-title">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round">
+                                    <path d="M6 6l12 12M18 6L6 18" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <label for="cityInput" class="mb-1.5 block text-[11px] font-bold text-text-body">استان</label>
+                        <select id="cityInput"
+                            class="w-full rounded-xl border border-border-custom bg-bg-secondary p-3 text-xs font-semibold text-text-title outline-none focus:border-primary">
+                            <option value="" disabled selected>استان یا شهر...</option>
+                            @foreach ($provinces as $province)
+                                <option value="{{ $province->id }}">{{ $province->title }}</option>
+                            @endforeach
+                        </select>
+
+                        <button id="citySave" type="button"
+                            class="mt-4 w-full rounded-xl bg-primary px-4 py-3 text-xs font-bold text-white shadow-lg shadow-primary/20 transition hover:bg-primary-hover active:scale-[0.99]">ذخیره
+                            شهر</button>
+                    </div>
+                </div>
+
+                <script>
+                    (function() {
+                        var btn = document.getElementById('cityBtn');
+                        var modal = document.getElementById('cityModal');
+                        var input = document.getElementById('cityInput');
+                        var save = document.getElementById('citySave');
+                        var cancel = document.getElementById('cityCancel');
+                        var label = document.getElementById('cityLabel');
+                        if (!btn || !modal || !input || !save || !cancel || !label) return;
+
+                        function setCookie(name, value, days) {
+                            var d = new Date();
+                            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+                            document.cookie = name + '=' + encodeURIComponent(value) + ';path=/;expires=' + d.toUTCString();
+                        }
+
+                        function getCookie(name) {
+                            var re = new RegExp('(?:^|; )' + name + '=([^;]*)');
+                            var m = document.cookie.match(re);
+                            return m ? decodeURIComponent(m[1]) : null;
+                        }
+
+                        var provinces = @json($provinces);
+                        var saved = getCookie('sospet_city');
+                        if (saved) label.textContent = provinces.find(p => p.id == saved)?.title || saved;
+
+                        function openModal() {
+                            input.value = saved || '';
+                            modal.classList.remove('hidden');
+                            modal.classList.add('flex');
+                            input.focus();
+                        }
+
+                        function closeModal() {
+                            modal.classList.add('hidden');
+                            modal.classList.remove('flex');
+                        }
+
+                        btn.addEventListener('click', openModal);
+                        cancel.addEventListener('click', closeModal);
+
+                        save.addEventListener('click', function() {
+                            var v = input.value;
+                            if (!v) return;
+                            saved = v;
+                            setCookie('sospet_city', v, 365);
+                            label.textContent = provinces.find(p => p.id == v)?.title || label.textContent;
+                            closeModal();
+                        });
+
+                        modal.addEventListener('click', function(e) {
+                            if (e.target === modal) closeModal();
+                        });
+                    })();
+                </script>
             </div>
         </section>
 
         <!-- Quick Actions -->
         <div
-            class="mt-20 px-4 flex flex-col gap-3 md:grid md:grid-cols-3 md:gap-5 md:px-10 md:mt-32 max-w-6xl mx-auto w-full">
+            class="mt-2 px-4 flex flex-col gap-3 md:grid md:grid-cols-3 md:gap-5 md:px-10 md:mt-4 max-w-6xl mx-auto w-full">
             <a href="{{ route('match-pets', ['mode' => 'lost']) }}" wire:navigate
                 class="rounded-2xl p-4 flex items-center gap-3.5 w-full text-right active:scale-[0.98] transition-transform border bg-bg-main border-border-custom md:flex-col-reverse md:justify-between md:items-start md:p-6">
                 <span
@@ -298,26 +432,7 @@ new class extends Component {
             <!-- Grid Results -->
             <div class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 md:gap-5">
                 @forelse($nearPets as $pet)
-                    <a href="/pet/{{ $pet->id }}" wire:navigate
-                        class="bg-card rounded-2xl overflow-hidden border border-border-custom shadow-sm hover:shadow-md transition-shadow">
-                        <div class="relative h-28 md:h-44 bg-bg-secondary">
-                            <img src="{{ $pet->images->first()?->image_url }}" class="w-full h-full object-cover"
-                                alt="{{ $pet->title }}">
-                            <span
-                                class="absolute bottom-2 start-2 text-white text-[10px] md:text-xs font-bold px-2 py-0.5 md:px-3 md:py-1 rounded-full {{ $pet->type === 'adoption' ? 'bg-primary' : 'bg-success-custom' }}">
-                                {{ $pet->type === 'adoption' ? 'فرزندخواهی' : ($pet->type === 'found' ? 'پیدا شده' : 'گم شده') }}
-                            </span>
-                        </div>
-                        <div class="p-2.5 md:p-4">
-                            <h3
-                                class="font-bold text-sm md:text-base text-text-title text-ellipsis overflow-hidden whitespace-nowrap">
-                                {{ $pet->title }}</h3>
-                            <p class="text-[11px] md:text-xs text-text-body mt-0.5">{{ $pet->pet_type }} ·
-                                {{ $pet->breed }}</p>
-                            <p class="text-[11px] md:text-xs text-primary font-semibold mt-1">{{ $pet->city }}،
-                                {{ $pet->area }}</p>
-                        </div>
-                    </a>
+                    @include('partials.pet-card', ['pet' => $pet])
                 @empty
                     <div
                         class="col-span-2 md:col-span-3 lg:col-span-4 text-center py-12 text-xs md:text-sm text-text-muted bg-bg-main rounded-2xl border border-dashed border-border-custom">

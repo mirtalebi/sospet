@@ -24,50 +24,95 @@
         class="relative w-full  bg-bg-main flex flex-col min-h-screen md:min-h-[85vh] overflow-hidden">
 
         <!-- Header -->
-        <header
-            class="flex items-center justify-between px-5 py-2 md:px-10 md:py-5 bg-gradient-to-b from-primary/5 to-transparent shrink-0">
-            <div class="flex items-center gap-1.5 md:gap-3">
-                <div class="w-8 h-8 md:w-11 md:h-11 rounded-full flex items-center justify-center"
-                    style="background: rgb(231, 244, 246);">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                        fill="none" stroke="#1298AE" stroke-width="2.3" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-paw-print md:hidden" aria-hidden="true">
-                        <circle cx="11" cy="4" r="2"></circle>
-                        <circle cx="18" cy="8" r="2"></circle>
-                        <circle cx="20" cy="16" r="2"></circle>
-                        <path
-                            d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
-                        </path>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                        fill="none" stroke="#1298AE" stroke-width="2.3" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-paw-print hidden md:block" aria-hidden="true">
-                        <circle cx="11" cy="4" r="2"></circle>
-                        <circle cx="18" cy="8" r="2"></circle>
-                        <circle cx="20" cy="16" r="2"></circle>
-                        <path
-                            d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
-                        </path>
-                    </svg>
+        <header class="relative z-30 shrink-0 px-4 pt-3 md:px-6 md:pt-4">
+            <div
+                class="mx-auto flex max-w-6xl items-center justify-between gap-2 rounded-[1.6rem] border border-border-custom/80 bg-bg-main/85 px-3 py-2.5 shadow-[0_18px_40px_-28px_rgba(34,50,74,0.45)] backdrop-blur-xl md:rounded-full md:px-5 md:py-3">
+
+                <!-- Brand -->
+                <div class="flex min-w-0 items-center gap-2.5">
+                    <button type="button" @click="sidebarOpen = true" aria-label="باز کردن منوی سایت"
+                        class="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-border-custom bg-bg-secondary text-text-title transition hover:border-primary/40 hover:text-primary active:scale-95">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round">
+                            <path d="M4 7h16M4 12h10M4 17h16" />
+                        </svg>
+                    </button>
+
+                    <a href="{{ route('home') }}" wire:navigate class="group flex min-w-0 items-center gap-2.5">
+                        <span
+                            class="relative grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-[#1B7C8C] text-white shadow-md shadow-primary/25 transition group-hover:-rotate-6 md:h-11 md:w-11">
+                            <svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true">
+                                <g fill="currentColor">
+                                    <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
+                                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2" transform="rotate(-22 6.9 8)" />
+                                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2" transform="rotate(22 17.1 8)" />
+                                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(-38 4.5 13.2)" />
+                                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(38 19.5 13.2)" />
+                                    <path
+                                        d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                                </g>
+                            </svg>
+                            <span
+                                class="absolute -end-1 -top-1 grid h-4 w-4 place-items-center rounded-full bg-cta text-[9px] leading-none text-white ring-2 ring-bg-main">♥</span>
+                        </span>
+                        <span class="min-w-0">
+                            <span
+                                class="block font-display text-xl leading-none tracking-wide text-text-title md:text-2xl">ساس‌پت</span>
+                            <span
+                                class="mt-0.5 hidden text-[10px] font-medium text-text-muted sm:block">برای هر حیوونی، یه خونه</span>
+                        </span>
+                    </a>
                 </div>
 
-                <span class="font-display text-2xl md:text-3xl text-text-title tracking-wide">ساس‌پت</span>
-            </div>
+                <!-- Desktop navigation -->
+                <nav aria-label="ناوبری اصلی" class="hidden items-center gap-1 text-xs font-bold text-text-body md:flex">
+                    <a href="{{ route('home') }}" wire:navigate
+                        class="rounded-full px-3 py-2 transition hover:bg-bg-secondary hover:text-primary">خانه</a>
+                    <a href="{{ route('match-pets', ['mode' => 'lost']) }}" wire:navigate
+                        class="rounded-full px-3 py-2 transition hover:bg-bg-secondary hover:text-primary">حیوون گم‌شده</a>
+                    <a href="{{ route('match-pets', ['mode' => 'found']) }}" wire:navigate
+                        class="rounded-full px-3 py-2 transition hover:bg-bg-secondary hover:text-primary">حیوون پیدا‌شده</a>
+                    <a href="{{ route('about-us') }}" wire:navigate
+                        class="rounded-full px-3 py-2 transition hover:bg-bg-secondary hover:text-primary">درباره ما</a>
+                </nav>
 
-            @auth
-                @if (auth()->user()->isAdmin())
-                    <a href="{{ route('admin.dashboard') }}" class="text-xs font-bold text-primary">پنل مدیریت</a>
-                @endif
-                <a href="/report" wire:navigate
-                    class="px-5 h-10 md:h-11 md:px-7 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm font-medium relative">
-                    ثبت آگهی
-                </a>
-            @else
-                <button @click="$dispatch('open-auth')"
-                    class="px-5 h-10 md:h-11 md:px-7 rounded-full bg-cta flex items-center justify-center border border-border-custom text-white text-sm font-medium relative">
-                    ثبت آگهی
-                </button>
-            @endauth
+                <!-- Actions -->
+                <div class="flex shrink-0 items-center gap-1.5">
+                    @auth
+                        <a href="/profile" wire:navigate aria-label="پروفایل من"
+                            class="hidden h-10 w-10 place-items-center rounded-full border border-border-custom bg-bg-secondary text-xs font-bold text-primary transition hover:border-primary/40 sm:grid">
+                            {{ mb_substr(auth()->user()->name, 0, 1) }}
+                        </a>
+                        @if (auth()->user()->isAdmin())
+                            <a href="{{ route('admin.dashboard') }}" title="پنل مدیریت" aria-label="پنل مدیریت"
+                                class="grid h-10 w-10 place-items-center rounded-full border border-border-custom bg-bg-secondary text-primary transition hover:border-primary/40 hover:bg-primary/5">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7Z" />
+                                    <path d="M9 12l2 2 4-4" />
+                                </svg>
+                            </a>
+                        @endif
+                        <a href="/report" wire:navigate
+                            class="inline-flex h-10 items-center gap-1.5 rounded-full bg-cta px-4 text-xs font-bold text-white shadow-lg shadow-cta/25 transition hover:bg-cta-hover active:scale-95 md:h-11 md:px-5 md:text-sm">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.6" stroke-linecap="round">
+                                <path d="M12 5v14M5 12h14" />
+                            </svg>
+                            ثبت آگهی
+                        </a>
+                    @else
+                        <button type="button" @click="$dispatch('open-auth')"
+                            class="inline-flex h-10 items-center gap-1.5 rounded-full bg-cta px-4 text-xs font-bold text-white shadow-lg shadow-cta/25 transition hover:bg-cta-hover active:scale-95 md:h-11 md:px-5 md:text-sm">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.6" stroke-linecap="round">
+                                <path d="M12 5v14M5 12h14" />
+                            </svg>
+                            ثبت آگهی
+                        </button>
+                    @endauth
+                </div>
+            </div>
         </header>
 
         <!-- Dynamic Slot Content -->
@@ -157,21 +202,25 @@
                 </div>
 
                 <nav class="flex flex-col gap-1 text-sm font-medium mt-4">
-                    <a href="#" class="px-3 py-3 rounded-xl bg-primary/10 text-primary font-bold">خانه</a>
-                    <a href="#" class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">جستجوی
-                        حیوانات</a>
-                    <a href="#" class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">درباره ما</a>
+                    <a href="{{ route('home') }}" wire:navigate
+                        class="px-3 py-3 rounded-xl bg-primary/10 text-primary font-bold">خانه</a>
+                    <a href="{{ route('match-pets', ['mode' => 'lost']) }}" wire:navigate
+                        class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">حیوون‌های گم‌شده</a>
+                    <a href="{{ route('match-pets', ['mode' => 'found']) }}" wire:navigate
+                        class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">حیوون‌های پیدا‌شده</a>
+                    <a href="{{ route('about-us') }}" wire:navigate
+                        class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">درباره ما</a>
 
                     <div class="mt-auto flex flex-col gap-2.5 pt-6">
                         @auth
                             <div class="bg-primary/5 border border-primary/10 rounded-xl p-3 flex items-center gap-3">
                                 <div
                                     class="w-9 h-9 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm">
-                                    {{ mb_substr(auth()->user()->first_name, 0, 1) }}
+                                    {{ mb_substr(auth()->user()->name, 0, 1) }}
                                 </div>
                                 <div class="text-right">
                                     <p class="text-xs font-bold text-text-title">{{ auth()->user()->name }}</p>
-                                    <p class="text-[10px] text-text-body" dir="ltr">{{ auth()->user()->phone }}</p>
+                                    <p class="text-[10px] text-text-body" dir="ltr">{{ auth()->user()->mobile }}</p>
                                 </div>
                             </div>
                             <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
