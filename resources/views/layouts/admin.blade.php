@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
     <title>{{ $title ?? 'پنل مدیریت' }} — ساس‌پت</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +20,7 @@
             ['admin.dashboard', 'داشبورد', 'M3 12l9-9 9 9M5 10v10h5v-6h4v6h5V10'],
             ['admin.users', 'کاربران', 'M16 11a4 4 0 10-8 0 4 4 0 008 0zM4 21a8 8 0 0116 0'],
             ['admin.pets', 'گزارش‌ها', 'M9 12h6M9 16h6M7 3h7l5 5v13H7z'],
+            ['admin.seo', 'سئو', 'M21 21l-4.3-4.3M11 18a7 7 0 100-14 7 7 0 000 14z'],
         ];
     @endphp
 
