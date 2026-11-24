@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Support\Settings\SettingsRepository;
 use Carbon\CarbonImmutable;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Date;
@@ -17,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(SettingsRepository::class);
     }
 
     /**

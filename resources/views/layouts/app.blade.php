@@ -1,10 +1,13 @@
+@php
+    $seo = app(\App\Support\Seo\SeoManager::class)->resolve();
+@endphp
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="{{ $seo->locale }}" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>SOS Pet — برای هر حیوونی، یه خونه</title>
+    @include('partials.seo', ['seo' => $seo])
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,10 +71,12 @@
                 <nav aria-label="ناوبری اصلی" class="hidden items-center gap-1 text-xs font-bold text-text-body md:flex">
                     <a href="{{ route('home') }}" wire:navigate
                         class="rounded-full px-3 py-2 transition hover:bg-bg-secondary hover:text-primary">خانه</a>
-                    <a href="{{ route('match-pets', ['mode' => 'lost']) }}" wire:navigate
+                    <a href="{{ route('lost-pets.index') }}" wire:navigate
                         class="rounded-full px-3 py-2 transition hover:bg-bg-secondary hover:text-primary">حیوون گم‌شده</a>
-                    <a href="{{ route('match-pets', ['mode' => 'found']) }}" wire:navigate
+                    <a href="{{ route('found-pets.index') }}" wire:navigate
                         class="rounded-full px-3 py-2 transition hover:bg-bg-secondary hover:text-primary">حیوون پیدا‌شده</a>
+                    <a href="{{ route('adoption.index') }}" wire:navigate
+                        class="rounded-full px-3 py-2 transition hover:bg-bg-secondary hover:text-primary">واگذاری</a>
                     <a href="{{ route('about-us') }}" wire:navigate
                         class="rounded-full px-3 py-2 transition hover:bg-bg-secondary hover:text-primary">درباره ما</a>
                 </nav>
@@ -204,10 +209,12 @@
                 <nav class="flex flex-col gap-1 text-sm font-medium mt-4">
                     <a href="{{ route('home') }}" wire:navigate
                         class="px-3 py-3 rounded-xl bg-primary/10 text-primary font-bold">خانه</a>
-                    <a href="{{ route('match-pets', ['mode' => 'lost']) }}" wire:navigate
+                    <a href="{{ route('lost-pets.index') }}" wire:navigate
                         class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">حیوون‌های گم‌شده</a>
-                    <a href="{{ route('match-pets', ['mode' => 'found']) }}" wire:navigate
+                    <a href="{{ route('found-pets.index') }}" wire:navigate
                         class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">حیوون‌های پیدا‌شده</a>
+                    <a href="{{ route('adoption.index') }}" wire:navigate
+                        class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">آگهی‌های واگذاری</a>
                     <a href="{{ route('about-us') }}" wire:navigate
                         class="px-3 py-3 rounded-xl text-text-title hover:bg-bg-secondary">درباره ما</a>
 
@@ -244,6 +251,7 @@
 
     @livewireScripts
     <livewire:auth-modal />
+    @include('partials.analytics', ['seo' => $seo])
 </body>
 
 </html>
