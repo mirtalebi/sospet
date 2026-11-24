@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Pet;
+use App\Support\Seo\SeoManager;
 use Livewire\Component;
 
 new class extends Component {
@@ -15,6 +16,9 @@ new class extends Component {
 
     public function mount(): void
     {
+        $seo = app(SeoManager::class);
+        $seo->set($seo->forMatch());
+
         $mode = request()->query('mode');
 
         if (!in_array($mode, ['lost', 'found'], true)) {

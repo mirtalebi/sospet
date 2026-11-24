@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Pet;
+use App\Support\Seo\SeoManager;
 use Livewire\Component;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
@@ -39,6 +40,9 @@ new class extends Component {
 
     public function with(): array
     {
+        $seo = app(SeoManager::class);
+        $seo->set($seo->forHome($this->search ?: null));
+
         $petsQuery = Pet::with('images')
             ->active()
             ->whereIn('type', ['adoption', 'found']);
@@ -76,8 +80,11 @@ new class extends Component {
         <!-- Top Hero Section -->
         <section class="relative overflow-hidden px-5 pb-5 pt-4 md:px-10 md:pb-7 md:pt-5">
             <!-- Soft storybook backdrop -->
-            <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#EAF6F8] via-[#FBF6EC] to-bg-secondary"></div>
-            <div class="pointer-events-none absolute -top-20 start-[18%] h-56 w-56 rounded-full bg-primary/15 blur-3xl"></div>
+            <div
+                class="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#EAF6F8] via-[#FBF6EC] to-bg-secondary">
+            </div>
+            <div class="pointer-events-none absolute -top-20 start-[18%] h-56 w-56 rounded-full bg-primary/15 blur-3xl">
+            </div>
             <div class="pointer-events-none absolute -bottom-20 end-0 h-56 w-56 rounded-full bg-cta/10 blur-3xl"></div>
 
             <!-- Wandering paw prints -->
@@ -85,22 +92,32 @@ new class extends Component {
                 viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <g>
                     <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
-                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2" transform="rotate(-22 6.9 8)" />
-                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2" transform="rotate(22 17.1 8)" />
-                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(-38 4.5 13.2)" />
-                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(38 19.5 13.2)" />
-                    <path d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2"
+                        transform="rotate(-22 6.9 8)" />
+                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2"
+                        transform="rotate(22 17.1 8)" />
+                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9"
+                        transform="rotate(-38 4.5 13.2)" />
+                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9"
+                        transform="rotate(38 19.5 13.2)" />
+                    <path
+                        d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
                 </g>
             </svg>
-            <svg class="pointer-events-none absolute end-[7%] bottom-8 h-7 w-7 rotate-12 text-cta/20" viewBox="0 0 24 24"
-                fill="currentColor" aria-hidden="true">
+            <svg class="pointer-events-none absolute end-[7%] bottom-8 h-7 w-7 rotate-12 text-cta/20"
+                viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <g>
                     <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
-                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2" transform="rotate(-22 6.9 8)" />
-                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2" transform="rotate(22 17.1 8)" />
-                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(-38 4.5 13.2)" />
-                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(38 19.5 13.2)" />
-                    <path d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2"
+                        transform="rotate(-22 6.9 8)" />
+                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2"
+                        transform="rotate(22 17.1 8)" />
+                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9"
+                        transform="rotate(-38 4.5 13.2)" />
+                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9"
+                        transform="rotate(38 19.5 13.2)" />
+                    <path
+                        d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
                 </g>
             </svg>
 
@@ -111,30 +128,29 @@ new class extends Component {
                     <div class="text-center lg:text-right">
                         <span
                             class="inline-flex items-center gap-1 rounded-full border border-primary/20 bg-white/70 px-2.5 py-1 text-[10px] font-bold text-primary shadow-sm backdrop-blur">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"
+                                aria-hidden="true">
                                 <g>
                                     <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
-                                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2" transform="rotate(-22 6.9 8)" />
-                                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2" transform="rotate(22 17.1 8)" />
-                                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(-38 4.5 13.2)" />
-                                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(38 19.5 13.2)" />
-                                    <path d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2"
+                                        transform="rotate(-22 6.9 8)" />
+                                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2"
+                                        transform="rotate(22 17.1 8)" />
+                                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9"
+                                        transform="rotate(-38 4.5 13.2)" />
+                                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9"
+                                        transform="rotate(38 19.5 13.2)" />
+                                    <path
+                                        d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
                                 </g>
                             </svg>
                             به ساس‌پت خوش اومدی
                         </span>
 
-                        <h1 class="mt-2 text-balance font-display text-[1.75rem] leading-[1.55] text-text-title sm:text-[2.1rem] lg:text-[2.5rem]">
+                        <h1
+                            class="mt-2 text-balance font-display text-[1.75rem] leading-[1.55] text-text-title sm:text-[2.1rem] lg:text-[2.5rem]">
                             برای تپیدن
                             <span class="whitespace-nowrap">
-                                <span class="relative inline-block px-1 text-primary">
-                                    خونه‌ها
-                                    <svg class="absolute inset-x-0 -bottom-1 h-2 w-full text-cta/70" viewBox="0 0 160 12"
-                                        preserveAspectRatio="none" fill="none" aria-hidden="true">
-                                        <path d="M3 9C30 3 60 2 80 5s45 4 77-2" stroke="currentColor" stroke-width="4"
-                                            stroke-linecap="round" />
-                                    </svg>
-                                </span>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"
                                     class="mx-1 inline-block h-[0.85em] w-[0.85em] align-[-0.05em]" aria-hidden="true">
                                     <path fill="#ef4444"
@@ -148,11 +164,23 @@ new class extends Component {
                                         <circle cx="21" cy="9" r="2.3" />
                                     </g>
                                 </svg>
+                                <span class="relative inline-block px-1 text-primary">
+                                    خونه‌ها
+                                    <svg class="absolute inset-x-0 -bottom-1 h-2 w-full text-cta/70"
+                                        viewBox="0 0 160 12" preserveAspectRatio="none" fill="none"
+                                        aria-hidden="true">
+                                        <path d="M3 9C30 3 60 2 80 5s45 4 77-2" stroke="currentColor" stroke-width="4"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </span>
+
                             </span>
                         </h1>
 
-                        <p class="mx-auto mt-2 max-w-md text-[11.5px] leading-6 text-text-body lg:mx-0 lg:max-w-lg lg:text-[13px]">
-                            اینجا حیوون‌های گم‌شده دوباره پیدا می‌شن و بی‌خونه‌ها یه خانواده‌ی مهربون. تو هم می‌تونی بخشی
+                        <p
+                            class="mx-auto mt-2 max-w-md text-[11.5px] leading-6 text-text-body lg:mx-0 lg:max-w-lg lg:text-[13px]">
+                            اینجا حیوون‌های گم‌شده دوباره پیدا می‌شن و بی‌خونه‌ها یه خانواده‌ی مهربون. تو هم می‌تونی
+                            بخشی
                             از این داستان باشی.
                         </p>
 
@@ -162,22 +190,23 @@ new class extends Component {
                                 class="flex items-center gap-1 rounded-[1.15rem] border border-border-custom bg-white p-1 shadow-[0_16px_35px_-28px_rgba(34,50,74,0.55)] transition focus-within:border-primary/50 focus-within:ring-4 focus-within:ring-primary/10">
                                 <button id="cityBtn" type="button"
                                     class="flex shrink-0 items-center gap-1.5 rounded-full bg-bg-secondary px-2.5 py-2 text-[11px] font-bold text-text-body transition hover:text-primary">
-                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
                                         <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" />
                                         <circle cx="12" cy="9.5" r="2.3" />
                                     </svg>
                                     <span id="cityLabel">{{ $city }}</span>
-                                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5" aria-hidden="true">
+                                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                         <path d="M6 9l6 6 6-6" />
                                     </svg>
                                 </button>
 
                                 <span class="h-6 w-px shrink-0 bg-border-custom" aria-hidden="true"></span>
 
-                                <svg class="ms-1 shrink-0 text-text-muted" width="17" height="17" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <svg class="ms-1 shrink-0 text-text-muted" width="17" height="17"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    aria-hidden="true">
                                     <circle cx="11" cy="11" r="7" />
                                     <path d="M20 20l-3.5-3.5" stroke-linecap="round" />
                                 </svg>
@@ -210,14 +239,20 @@ new class extends Component {
                             <div
                                 class="absolute -start-3 top-4 flex rotate-[-3deg] items-center gap-1.5 rounded-xl bg-white/95 px-2.5 py-1.5 text-[10px] font-bold text-text-title shadow-lg ring-1 ring-border-custom">
                                 <span class="grid h-5 w-5 place-items-center rounded-full bg-primary/10 text-primary">
-                                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"
+                                        aria-hidden="true">
                                         <g>
                                             <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
-                                            <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2" transform="rotate(-22 6.9 8)" />
-                                            <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2" transform="rotate(22 17.1 8)" />
-                                            <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(-38 4.5 13.2)" />
-                                            <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(38 19.5 13.2)" />
-                                            <path d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                                            <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2"
+                                                transform="rotate(-22 6.9 8)" />
+                                            <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2"
+                                                transform="rotate(22 17.1 8)" />
+                                            <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9"
+                                                transform="rotate(-38 4.5 13.2)" />
+                                            <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9"
+                                                transform="rotate(38 19.5 13.2)" />
+                                            <path
+                                                d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
                                         </g>
                                     </svg>
                                 </span>
@@ -228,13 +263,15 @@ new class extends Component {
                 </div>
 
                 <!-- City Modal -->
-                <div id="cityModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-text-title/40 p-4 backdrop-blur-sm">
+                <div id="cityModal"
+                    class="fixed inset-0 z-50 hidden items-center justify-center bg-text-title/40 p-4 backdrop-blur-sm">
                     <div class="w-full max-w-sm rounded-[2rem] border border-border-custom bg-bg-main p-5 shadow-2xl">
                         <div class="mb-4 flex items-start justify-between gap-3">
                             <div class="flex items-center gap-2.5">
-                                <span class="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary">
-                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
+                                <span
+                                    class="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
                                         <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" />
                                         <circle cx="12" cy="9.5" r="2.3" />
                                     </svg>
@@ -246,8 +283,8 @@ new class extends Component {
                             </div>
                             <button id="cityCancel" type="button" aria-label="بستن"
                                 class="grid h-8 w-8 place-items-center rounded-full bg-bg-secondary text-text-muted transition hover:text-text-title">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2.4" stroke-linecap="round">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
                                     <path d="M6 6l12 12M18 6L6 18" />
                                 </svg>
                             </button>
@@ -329,7 +366,7 @@ new class extends Component {
         <!-- Quick Actions -->
         <div
             class="mt-2 px-4 flex flex-col gap-3 md:grid md:grid-cols-3 md:gap-5 md:px-10 md:mt-4 max-w-6xl mx-auto w-full">
-            <a href="{{ route('match-pets', ['mode' => 'lost']) }}" wire:navigate
+            <a href="{{ route('lost-pets.index') }}" wire:navigate
                 class="rounded-2xl p-4 flex items-center gap-3.5 w-full text-right active:scale-[0.98] transition-transform border bg-bg-main border-border-custom md:flex-col-reverse md:justify-between md:items-start md:p-6">
                 <span
                     class="w-9 h-9 rounded-full flex items-center justify-center shrink-0 text-white bg-primary md:self-end">
@@ -339,7 +376,8 @@ new class extends Component {
                     </svg>
                 </span>
                 <span class="flex-1 min-w-0 block text-right md:mt-4">
-                    <span class="block font-extrabold text-[14px] md:text-base mb-0.5 text-primary">حیوانم گم شده</span>
+                    <span class="block font-extrabold text-[14px] md:text-base mb-0.5 text-primary">حیوانم گم
+                        شده</span>
                     <span
                         class="block text-[11.5px] md:text-xs leading-relaxed text-text-body md:whitespace-normal">آگهی
                         گمشده‌تان را ثبت کنید تا سریع‌تر پیدا شود</span>
@@ -357,7 +395,7 @@ new class extends Component {
                 </span>
             </a>
 
-            <a href="{{ route('match-pets', ['mode' => 'found']) }}" wire:navigate
+            <a href="{{ route('found-pets.index') }}" wire:navigate
                 class="rounded-2xl p-4 flex items-center gap-3.5 w-full text-right active:scale-[0.98] transition-transform border bg-bg-main border-border-custom md:flex-col-reverse md:justify-between md:items-start md:p-6">
                 <span
                     class="w-9 h-9 rounded-full flex items-center justify-center shrink-0 text-white bg-primary md:self-end">
@@ -383,7 +421,7 @@ new class extends Component {
                 </span>
             </a>
 
-            <button type="button"
+            <a href="{{ route('adoption.index') }}" wire:navigate
                 class="rounded-2xl p-4 flex items-center gap-3.5 w-full text-right active:scale-[0.98] transition-transform border bg-bg-main border-border-custom md:flex-col-reverse md:justify-between md:items-start md:p-6">
                 <span
                     class="w-9 h-9 rounded-full flex items-center justify-center shrink-0 text-white bg-primary md:self-end">
@@ -406,14 +444,14 @@ new class extends Component {
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
                 </span>
-            </button>
+            </a>
         </div>
 
         <!-- Near You Section -->
         <section class="pt-8 px-5 md:px-10 md:pt-14 max-w-6xl mx-auto w-full">
             <div class="flex items-center justify-between mb-3 md:mb-5">
                 <h2 class="font-bold text-base md:text-xl text-text-title">نزدیک تو</h2>
-                <a href="#"
+                <a href="{{ route($activeTab === 'adopt' ? 'adoption.index' : 'found-pets.index') }}" wire:navigate
                     class="text-xs font-semibold text-primary hover:text-primary-hover md:text-sm">مشاهده همه</a>
             </div>
 

@@ -102,8 +102,9 @@ new class extends Component {
             'phone' => $this->phone,
         ]);
 
-        foreach ($this->photos as $photo) {
-            $path = $photo->store('pets', 'public');
+        foreach ($this->photos as $index => $photo) {
+            $extension = $photo->extension() ?: 'jpg';
+            $path = $photo->storeAs('pets', "{$pet->slug}-".($index + 1).'.'.$extension, 'public');
             PetImage::create([
                 'pet_id' => $pet->id,
                 'image_path' => $path,

@@ -1,23 +1,42 @@
 <?php
 
 use App\Models\Pet;
+use App\Support\Seo\SeoManager;
 use Livewire\Component;
 
 new class extends Component {
     public Pet $pet;
     public int $totalImages = 0;
+    public array $breadcrumbs = [];
 
-    public function mount($id)
+    public function mount(Pet $pet)
     {
-        $this->pet = Pet::with(['images', 'user'])
-            ->visible()
-            ->findOrFail($id);
-        $this->totalImages = $this->pet->images->count();
+        abort_if($pet->is_hidden, 404);
+
+        $pet->loadMissing(['images', 'user']);
+
+        $this->pet = $pet;
+        $this->totalImages = $pet->images->count();
+
+        $type = SeoManager::TYPES[$pet->type] ?? SeoManager::TYPES['lost'];
+
+        $this->breadcrumbs = [
+            ['label' => 'خانه', 'url' => route('home')],
+            ['label' => $type['plural'], 'url' => route($type['hub'])],
+            ['label' => $pet->title],
+        ];
+
+        $seo = app(SeoManager::class);
+        $seo->set($seo->forPet($pet));
     }
 };
 ?>
 
 <main class="flex-1 overflow-y-auto no-scrollbar pb-24 md:pb-8 bg-zinc-50" x-data="{ listingType: '{{ $pet->type }}', active: 0 }">
+
+    <div class="mx-auto max-w-5xl px-5 pt-4 md:px-6 md:pt-6">
+        @include('partials.breadcrumbs', ['items' => $breadcrumbs])
+    </div>
 
     <!-- Wrapper to limit large viewport spreads -->
     <div class="max-w-5xl mx-auto md:p-6 grid grid-cols-1 md:grid-cols-12 md:gap-8 items-start">
@@ -33,11 +52,15 @@ new class extends Component {
                         @foreach ($pet->images as $index => $image)
                             <img src="{{ asset('storage/' . $image->image_path) }}"
                                 class="w-full h-full object-cover shrink-0 snap-center"
-                                alt="{{ $pet->title }} - عکس {{ $index + 1 }}">
+                                alt="{{ $pet->imageAlt() }} — تصویر {{ $index + 1 }}"
+                                loading="{{ $loop->first ? 'eager' : 'lazy' }}"
+                                fetchpriority="{{ $loop->first ? 'high' : 'auto' }}" decoding="async"
+                                width="800" height="800">
                         @endforeach
                     @else
                         <img src="https://placedog.net/640/672?id=21"
-                            class="w-full h-full object-cover shrink-0 snap-center" alt="تصویر پیش‌فرض">
+                            class="w-full h-full object-cover shrink-0 snap-center" alt="{{ $pet->imageAlt() }}"
+                            decoding="async" width="800" height="800">
                     @endif
                 </div>
 
@@ -128,8 +151,30 @@ new class extends Component {
                 </div>
             </section>
 
+            <!-- Resolved Status Banner -->
+            @if ($pet->is_resolved)
+                <section>
+                    <div class="rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
+                        <div class="mb-2 flex items-center gap-2">
+                            <span
+                                class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-emerald-600 text-white shadow-sm">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12l5 5L20 7" />
+                                </svg>
+                            </span>
+                            <h2 class="text-sm font-bold text-emerald-800">{{ $pet->resolvedLabel() }}</h2>
+                        </div>
+                        <p class="text-xs leading-6 text-emerald-900">
+                            این گزارش به نتیجه رسیده و از فهرست آگهی‌های فعال خارج شده است. صفحه برای مرجع باقی می‌ماند.
+                        </p>
+                    </div>
+                </section>
+            @endif
+
             <!-- Emergency Warning Banner -->
-            <section x-show="listingType === 'lost'" x-cloak>
+            @if ($pet->type === 'lost' && ! $pet->is_resolved)
+            <section>
                 <div class="bg-rose-50 border border-rose-100 rounded-2xl p-4">
                     <div class="flex items-center gap-2 mb-2">
                         <span
@@ -150,6 +195,7 @@ new class extends Component {
                     </p>
                 </div>
             </section>
+            @endif
 
             <!-- Attributes Specifications Grid -->
             <section>

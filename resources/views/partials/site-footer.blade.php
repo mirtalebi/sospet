@@ -4,6 +4,9 @@
         <p>© ۱۴۰۵ ساس‌پت. تمامی حقوق محفوظ است.</p>
 
         <nav aria-label="پیوندهای اطلاعاتی" class="flex flex-wrap gap-x-5 gap-y-3 text-xs font-medium text-text-muted">
+            <a href="{{ route('lost-pets.index') }}" wire:navigate class="transition-colors hover:text-primary">حیوانات گمشده</a>
+            <a href="{{ route('found-pets.index') }}" wire:navigate class="transition-colors hover:text-primary">حیوانات پیدا شده</a>
+            <a href="{{ route('adoption.index') }}" wire:navigate class="transition-colors hover:text-primary">آگهی‌های واگذاری</a>
             <a href="{{ route('about-us') }}" wire:navigate class="transition-colors hover:text-primary">درباره ما</a>
             <a href="{{ route('support') }}" wire:navigate class="transition-colors hover:text-primary">پشتیبانی</a>
             <a href="{{ route('terms') }}" wire:navigate class="transition-colors hover:text-primary">قوانین و مقررات</a>

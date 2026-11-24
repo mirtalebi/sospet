@@ -7,7 +7,7 @@
     };
 @endphp
 
-<a href="{{ route('pet-details', $pet->id) }}" wire:navigate
+<a href="{{ route('pet-details', $pet) }}" wire:navigate
     class="group flex flex-col overflow-hidden rounded-[1.35rem] border border-border-custom bg-card shadow-[0_14px_35px_-30px_rgba(34,50,74,0.6)] transition duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-[0_22px_45px_-32px_rgba(34,50,74,0.6)]">
 
     <!-- Photo -->
@@ -26,7 +26,8 @@
         </svg>
 
         @if ($image)
-            <img src="{{ $image->image_url }}" alt="{{ $pet->title }}" loading="lazy" onerror="this.remove()"
+            <img src="{{ $image->image_url }}" alt="{{ $pet->imageAlt() }}" loading="lazy" decoding="async"
+                width="400" height="300" onerror="this.remove()"
                 class="relative h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]">
         @endif
 
