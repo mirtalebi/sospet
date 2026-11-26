@@ -122,33 +122,47 @@ new class extends Component {
             </svg>
 
             <div class="relative mx-auto w-full max-w-6xl">
-                <div class="grid items-center gap-5 lg:grid-cols-[1fr_auto] lg:gap-10">
+                <div class="flex flex-col items-center text-center">
+                    <span
+                        class="inline-flex items-center gap-1 rounded-full border border-primary/20 bg-white/70 px-2.5 py-1 text-[10px] font-bold text-primary shadow-sm backdrop-blur">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"
+                            aria-hidden="true">
+                            <g>
+                                <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
+                                <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2"
+                                    transform="rotate(-22 6.9 8)" />
+                                <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2"
+                                    transform="rotate(22 17.1 8)" />
+                                <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9"
+                                    transform="rotate(-38 4.5 13.2)" />
+                                <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9"
+                                    transform="rotate(38 19.5 13.2)" />
+                                <path
+                                    d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                            </g>
+                        </svg>
+                        به ساس‌پت خوش اومدی
+                    </span>
 
-                    <!-- Copy + search -->
-                    <div class="text-center lg:text-right">
-                        <span
-                            class="inline-flex items-center gap-1 rounded-full border border-primary/20 bg-white/70 px-2.5 py-1 text-[10px] font-bold text-primary shadow-sm backdrop-blur">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"
-                                aria-hidden="true">
-                                <g>
-                                    <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
-                                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2"
-                                        transform="rotate(-22 6.9 8)" />
-                                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2"
-                                        transform="rotate(22 17.1 8)" />
-                                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9"
-                                        transform="rotate(-38 4.5 13.2)" />
-                                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9"
-                                        transform="rotate(38 19.5 13.2)" />
-                                    <path
-                                        d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
-                                </g>
+                    <div class="relative mt-1 flex w-full items-center justify-center gap-1 sm:gap-4 lg:gap-8">
+                        <!-- Dog mascot (visual right) -->
+                        <div class="relative shrink-0 self-end">
+                            <span
+                                class="pointer-events-none absolute inset-x-1 bottom-2 h-12 rounded-full bg-cta/25 blur-2xl"
+                                aria-hidden="true"></span>
+                            <img src="/assets/img/hero-dog-mascot.png" alt="تصویر سگ خندان ساس‌پت"
+                                width="144" height="144" fetchpriority="high"
+                                class="hero-mascot relative w-16 sm:w-24 lg:w-32 xl:w-36"
+                                style="--mascot-tilt: 6deg; --mascot-delay: -1.5s">
+                            <svg class="hero-spark absolute -top-1 start-1 h-4 w-4 text-cta sm:h-5 sm:w-5"
+                                viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 20.7c-.6 0-6.9-4.2-6.9-9.4a4.3 4.3 0 0 1 6.9-3.4 4.3 4.3 0 0 1 6.9 3.4c0 5.2-6.3 9.4-6.9 9.4Z" />
                             </svg>
-                            به ساس‌پت خوش اومدی
-                        </span>
+                        </div>
 
                         <h1
-                            class="mt-2 text-balance font-display text-[1.75rem] leading-[1.55] text-text-title sm:text-[2.1rem] lg:text-[2.5rem]">
+                            class="text-balance font-display text-[1.9rem] leading-[1.5] text-text-title sm:text-[2.3rem] lg:text-[2.75rem] xl:text-[3rem]">
                             برای تپیدن
                             <span class="whitespace-nowrap">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"
@@ -177,87 +191,75 @@ new class extends Component {
                             </span>
                         </h1>
 
-                        <p
-                            class="mx-auto mt-2 max-w-md text-[11.5px] leading-6 text-text-body lg:mx-0 lg:max-w-lg lg:text-[13px]">
-                            اینجا حیوون‌های گم‌شده دوباره پیدا می‌شن و بی‌خونه‌ها یه خانواده‌ی مهربون. تو هم می‌تونی
-                            بخشی
-                            از این داستان باشی.
-                        </p>
-
-                        <!-- Search Bar -->
-                        <div class="relative mx-auto mt-4 w-full max-w-md md:max-w-xl lg:mx-0">
-                            <div
-                                class="flex items-center gap-1 rounded-[1.15rem] border border-border-custom bg-white p-1 shadow-[0_16px_35px_-28px_rgba(34,50,74,0.55)] transition focus-within:border-primary/50 focus-within:ring-4 focus-within:ring-primary/10">
-                                <button id="cityBtn" type="button"
-                                    class="flex shrink-0 items-center gap-1.5 rounded-full bg-bg-secondary px-2.5 py-2 text-[11px] font-bold text-text-body transition hover:text-primary">
-                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2">
-                                        <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" />
-                                        <circle cx="12" cy="9.5" r="2.3" />
-                                    </svg>
-                                    <span id="cityLabel">{{ $city }}</span>
-                                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                                        <path d="M6 9l6 6 6-6" />
-                                    </svg>
-                                </button>
-
-                                <span class="h-6 w-px shrink-0 bg-border-custom" aria-hidden="true"></span>
-
-                                <svg class="ms-1 shrink-0 text-text-muted" width="17" height="17"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    aria-hidden="true">
-                                    <circle cx="11" cy="11" r="7" />
-                                    <path d="M20 20l-3.5-3.5" stroke-linecap="round" />
-                                </svg>
-
-                                <input type="text" wire:model.live.debounce.250ms="search"
-                                    placeholder="دنبال چی می‌گردی؟ گربه، سگ..."
-                                    class="min-w-0 flex-1 bg-transparent px-1 py-1.5 text-[13px] text-text-title placeholder:text-text-muted outline-none">
-                            </div>
-
-                            <div class="mt-2 flex flex-wrap items-center justify-center gap-1.5 lg:justify-start">
-                                <span class="text-[10px] font-bold text-text-muted">پیشنهاد دوستانه:</span>
-                                @foreach (['گربه', 'سگ', 'پیدا شده'] as $suggestion)
-                                    <button type="button" wire:click="$set('search', '{{ $suggestion }}')"
-                                        class="rounded-full border border-border-custom bg-white/80 px-2.5 py-1 text-[10px] font-bold text-text-body transition hover:border-primary/40 hover:text-primary">{{ $suggestion }}</button>
-                                @endforeach
-                            </div>
+                        <!-- Cat mascot (visual left) -->
+                        <div class="relative shrink-0 self-end">
+                            <span
+                                class="pointer-events-none absolute inset-x-1 bottom-2 h-12 rounded-full bg-primary/25 blur-2xl"
+                                aria-hidden="true"></span>
+                            <img src="/assets/img/hero-cat-mascot.png" alt="تصویر گربه خندان ساس‌پت"
+                                width="144" height="144" fetchpriority="high"
+                                class="hero-mascot relative w-16 sm:w-24 lg:w-32 xl:w-36"
+                                style="--mascot-tilt: -6deg; --mascot-delay: -4s">
+                            <svg class="hero-spark absolute -top-1 end-1 h-3.5 w-3.5 text-primary sm:h-4 sm:w-4"
+                                viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <g>
+                                    <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
+                                    <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2" transform="rotate(-22 6.9 8)" />
+                                    <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2" transform="rotate(22 17.1 8)" />
+                                    <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(-38 4.5 13.2)" />
+                                    <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9" transform="rotate(38 19.5 13.2)" />
+                                    <path
+                                        d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
+                                </g>
+                            </svg>
                         </div>
                     </div>
 
-                    <!-- Illustration (compact, desktop only) -->
-                    <div class="relative mx-auto hidden w-[260px] lg:block xl:w-[300px]">
-                        <div
-                            class="relative rounded-[1.8rem] bg-white/55 p-2 shadow-[0_24px_45px_-30px_rgba(34,50,74,0.45)] ring-1 ring-white/80 backdrop-blur-sm">
-                            <div
-                                class="overflow-hidden rounded-[1.4rem] bg-gradient-to-br from-[#FFF4E6] via-[#F6FBF8] to-[#E9F6F8]">
-                                <img src="/assets/img/chat-1.png" alt="هم‌آغوشی مهربان یک آدم با سگ و گربه"
-                                    class="h-[240px] w-full object-contain object-bottom xl:h-[270px]">
-                            </div>
+                    <p
+                        class="mx-auto mt-3 max-w-md text-[11.5px] leading-6 text-text-body sm:text-xs lg:max-w-lg lg:text-[13px]">
+                        اینجا حیوون‌های گم‌شده دوباره پیدا می‌شن و بی‌خونه‌ها یه خانواده‌ی مهربون. تو هم می‌تونی
+                        بخشی
+                        از این داستان باشی.
+                    </p>
 
-                            <div
-                                class="absolute -start-3 top-4 flex rotate-[-3deg] items-center gap-1.5 rounded-xl bg-white/95 px-2.5 py-1.5 text-[10px] font-bold text-text-title shadow-lg ring-1 ring-border-custom">
-                                <span class="grid h-5 w-5 place-items-center rounded-full bg-primary/10 text-primary">
-                                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"
-                                        aria-hidden="true">
-                                        <g>
-                                            <ellipse cx="12" cy="5" rx="1.9" ry="2.4" />
-                                            <ellipse cx="6.9" cy="8" rx="1.7" ry="2.2"
-                                                transform="rotate(-22 6.9 8)" />
-                                            <ellipse cx="17.1" cy="8" rx="1.7" ry="2.2"
-                                                transform="rotate(22 17.1 8)" />
-                                            <ellipse cx="4.5" cy="13.2" rx="1.5" ry="1.9"
-                                                transform="rotate(-38 4.5 13.2)" />
-                                            <ellipse cx="19.5" cy="13.2" rx="1.5" ry="1.9"
-                                                transform="rotate(38 19.5 13.2)" />
-                                            <path
-                                                d="M12 11.3c-2.5 0-4.6 1.6-5.5 3.8-.8 2 .4 4.2 2.6 4.6.9.2 1.9 0 2.9-.6.7-.4 1.4-.4 2.1 0 1 .6 2 .8 2.9.6 2.2-.4 3.4-2.6 2.6-4.6-.9-2.2-3-3.9-5.6-3.9Z" />
-                                        </g>
-                                    </svg>
-                                </span>
-                                کنار هم، امن و خوشحال
-                            </div>
+                    <!-- Search Bar -->
+                    <div class="relative mx-auto mt-4 w-full max-w-xl">
+                        <div
+                            class="flex items-center gap-1 rounded-[1.15rem] border border-border-custom bg-white p-1 shadow-[0_16px_35px_-28px_rgba(34,50,74,0.55)] transition focus-within:border-primary/50 focus-within:ring-4 focus-within:ring-primary/10">
+                            <button id="cityBtn" type="button"
+                                class="flex shrink-0 items-center gap-1.5 rounded-full bg-bg-secondary px-2.5 py-2 text-[11px] font-bold text-text-body transition hover:text-primary">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" />
+                                    <circle cx="12" cy="9.5" r="2.3" />
+                                </svg>
+                                <span id="cityLabel">{{ $city }}</span>
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            </button>
+
+                            <span class="h-6 w-px shrink-0 bg-border-custom" aria-hidden="true"></span>
+
+                            <svg class="ms-1 shrink-0 text-text-muted" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                aria-hidden="true">
+                                <circle cx="11" cy="11" r="7" />
+                                <path d="M20 20l-3.5-3.5" stroke-linecap="round" />
+                            </svg>
+
+                            <input type="text" wire:model.live.debounce.250ms="search"
+                                placeholder="دنبال چی می‌گردی؟ گربه، سگ..."
+                                class="min-w-0 flex-1 bg-transparent px-1 py-1.5 text-[13px] text-text-title placeholder:text-text-muted outline-none">
+                        </div>
+
+                        <div class="mt-2 flex flex-wrap items-center justify-center gap-1.5">
+                            <span class="text-[10px] font-bold text-text-muted">پیشنهاد دوستانه:</span>
+                            @foreach (['گربه', 'سگ', 'پیدا شده'] as $suggestion)
+                                <button type="button" wire:click="$set('search', '{{ $suggestion }}')"
+                                    class="rounded-full border border-border-custom bg-white/80 px-2.5 py-1 text-[10px] font-bold text-text-body transition hover:border-primary/40 hover:text-primary">{{ $suggestion }}</button>
+                            @endforeach
                         </div>
                     </div>
                 </div>
